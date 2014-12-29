@@ -1,0 +1,80 @@
+﻿@model PupilModel
+
+@{
+    ViewBag.Title = "Read";
+}
+
+<h2>Read</h2>
+
+
+@Model.firstName
+@Model.lastName
+@Model.sex
+@Model.birthdayDate
+
+
+
+
+@Html.ActionLink(
+        linkText:  @Model.classroomTitle,
+        actionName: "Read",
+        controllerName: "Classroom",
+        routeValues: new
+        {
+            id = @Model.classroomId   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    )
+
+
+
+
+@Html.ActionLink(
+        linkText:  @Model.levelTitle,
+        actionName: "Read",
+        controllerName: "Level",
+        routeValues: new
+        {
+            id = @Model.levelId   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    )
+
+
+
+@Html.ActionLink(
+        linkText:  @Model.tutorLastName,
+        actionName: "Read",
+        controllerName: "Tutor",
+        routeValues: new
+        {
+            id = @Model.tutorId   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    )
+
+
+
+
+
+@foreach (var eval in Model.results)
+{
+    @Html.ActionLink(
+        linkText:  @eval.note.ToString() +"/"+ @eval.totalNote,
+        actionName: "Read",
+        controllerName: "Result",
+        routeValues: new
+        {
+            id = @eval.id   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    )
+}

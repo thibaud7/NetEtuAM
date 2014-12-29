@@ -1,0 +1,25 @@
+﻿@model ClassroomModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Classroom</h2>
+
+
+@{Html.BeginForm("Create", "Classroom");}
+
+@Html.LabelFor(s => s.title)
+@Html.TextBoxFor(s => s.title)
+@Html.ValidationMessageFor(s => s.title)
+
+
+@Html.Label("Années")
+@Html.DropDownList("yearId", 
+    new SelectList((IEnumerable<YearModel>) ViewData["annees"], "Id", "Year"))
+
+@Html.Label("Etablissements")
+@Html.DropDownList("establishmentId", 
+    new SelectList((IEnumerable<EstablishmentModel>) ViewData["etablissements"], "Id", "Name"))
+
+<input type="submit" value="Ajouter Classe"/>
+@{Html.EndForm();}

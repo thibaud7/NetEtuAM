@@ -1,0 +1,38 @@
+﻿@model List<PupilModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Prénom </td>
+            <td>Nom </td>
+            <td>Sexe </td>
+            <td>Anniversaire</td>
+            <td>Etat</td>
+            <td>Professeur</td>
+            <td>Classe</td>
+            <td>Niveau</td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var pupil in Model) {
+        <tr>
+            <td>@pupil.id</td>
+            <td>@pupil.firstName</td>
+            <td>@pupil.lastName</td>
+            <td>@pupil.sex</td>
+            <td>@pupil.birthdayDate</td>
+            <td>@pupil.state</td>
+            <td>@pupil.tutorLastName</td>
+            <td>@pupil.classroomTitle</td>
+            <td>@pupil.levelTitle</td>
+        </tr>
+         }
+    </tbody>
+</table>

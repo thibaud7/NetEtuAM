@@ -1,0 +1,41 @@
+﻿@model AcademyModel
+
+@{
+    ViewBag.Title = "Read";
+}
+
+<h2>Read</h2>
+
+@Model.name
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Titre </td>
+        </tr>
+    </thead>
+        <tbody>
+@foreach (var x in Model.establishments) 
+{
+    <tr>
+    <td>
+    @x.town
+    </td>
+
+    <td>
+            @Html.ActionLink(
+                linkText: @x.name,
+                actionName: "Read",
+                controllerName: "Establishment",
+                routeValues: new
+                {
+                    id = @x.id
+                },
+                htmlAttributes: new
+                {
+                    target = "_blank"
+                }
+            )        
+    </td>
+    </tr>
+}

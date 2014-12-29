@@ -1,0 +1,31 @@
+﻿@model List<ResultModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Evaluation </td>
+            <td>Prenom eleve </td>
+            <td>Nom eleve </td>
+            <td>Fin periode </td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var result in Model)
+         {
+        <tr>
+            <td>@result.id</td>
+            <td>@result.evaluationId</td>
+            <td>@result.pupilFirstName</td>
+            <td>@result.pupilLastName</td>
+            <td>@result.note</td>
+        </tr>
+         }
+    </tbody>
+</table>

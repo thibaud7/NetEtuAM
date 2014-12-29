@@ -1,0 +1,80 @@
+﻿﻿@model List<ResultModel>
+@{
+ViewBag.Title = "Add Results";
+var eval = (EvaluationModel)ViewData["evaluation"];
+var pupils = (List<PupilModel>)ViewData["pupils"];
+}
+<h2>Add Results</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Period</th>
+<th>Classroom</th>
+<th>User</th>
+<th>Date</th>
+<th>TotalPoint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+
+<td>
+@Html.ActionLink(
+linkText: eval.periodBegin.ToShortDateString() + " - " + eval.periodEnd.ToShortDateString(),
+actionName: "Read",
+controllerName: "Period",
+routeValues: new
+{
+id = eval.idPeriod
+},
+htmlAttributes: new
+{
+target = "_blank",
+}
+)
+</td>
+<td>
+@Html.ActionLink(
+linkText: eval.classroomTitle,
+actionName: "Read",
+controllerName: "Classroom",
+routeValues: new
+{
+id = eval.idClassroom
+},
+htmlAttributes: new
+{
+target = "_blank",
+}
+)
+</td>
+<td>@eval.userName</td>
+<td>@eval.date.ToShortDateString()</td>
+<td>
+@eval.totalPoint
+</td>
+</tr>
+</tbody>
+</table>
+@{Html.BeginForm("AddResults", "Evaluation", FormMethod.Post);}
+<table>
+<thead>
+<tr >
+<th>Pupil</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+@for (int i = 0; i < pupils.Count; i++)
+{
+<tr>
+@Html.HiddenFor(r => r[i].pupilId, new { Value = pupils[i].id})
+@Html.HiddenFor(r => r[i].evaluationId, new { Value = eval.id })
+<td>@pupils[i].firstName @pupils[i].lastName</td>
+<td>@Html.TextBoxFor(r => r[i].note, new { type="number", min="0", max=eval.totalPoint })</td>
+</tr>
+}
+</tbody>
+</table>
+<input class="btn btn-primary" type="submit" value="Valider" />
+@{Html.EndForm();}

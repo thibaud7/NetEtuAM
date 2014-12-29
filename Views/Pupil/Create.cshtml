@@ -1,0 +1,43 @@
+﻿@model PupilModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Pupil</h2>
+
+
+@{Html.BeginForm("Create", "Pupil");}
+
+@Html.LabelFor(s => s.firstName)
+@Html.TextBoxFor(s => s.firstName)
+@Html.ValidationMessageFor(s => s.firstName)
+
+@Html.LabelFor(s => s.lastName)
+@Html.TextBoxFor(s => s.lastName)
+@Html.ValidationMessageFor(s => s.lastName)
+
+@Html.LabelFor(s => s.sex)
+<input type="radio" name="sex" value="1" checked> Homme<br>
+<input type="radio" name="sex" value="2" > Femme
+@Html.ValidationMessageFor(s => s.sex)
+
+@Html.LabelFor(s => s.birthdayDate)
+<input type="date" id="birthdayDate" name="birthdayDate" />
+
+
+@Html.Label("Tuteur")
+@Html.DropDownList("tutorId", 
+    new SelectList((IEnumerable<TutorModel>) ViewData["tutors"], "Id", "FirstName"))
+                  
+@Html.Label("Classe")
+@Html.DropDownList("classroomId", 
+    new SelectList((IEnumerable<ClassroomModel>) ViewData["classes"], "Id", "Title"))
+
+
+@Html.Label("Niveau")
+@Html.DropDownList("levelId", 
+    new SelectList((IEnumerable<LevelModel>) ViewData["levels"], "Id", "Title"))
+
+
+<input type="submit" value="Ajouter Eleve"/>
+@{Html.EndForm();}

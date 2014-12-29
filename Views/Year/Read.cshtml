@@ -1,0 +1,42 @@
+﻿@model YearModel
+
+@{
+    ViewBag.Title = "Read";
+}
+
+<h2>Read</h2>
+
+@Model.id
+@Model.year
+
+@foreach (var period in Model.periods)
+{
+    @Html.ActionLink(
+        linkText:  @period.begin + " ---" + @period.end,
+        actionName: "Read",
+        controllerName: "Period",
+        routeValues: new
+        {
+            id = @period.id   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    );
+}
+
+@foreach (var classroom in Model.classrooms)
+{
+    @Html.ActionLink(
+        linkText:  @classroom.title,
+        actionName: "Read",
+        controllerName: "Classroom",
+        routeValues: new
+        {
+            id = @classroom.id   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    );
+}

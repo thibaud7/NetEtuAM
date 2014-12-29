@@ -1,0 +1,49 @@
+﻿@model List<EvaluationModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Classe </td>
+            <td>Utilisateur </td>
+            <td>Debut periode </td>
+            <td>Fin periode </td>
+            <td>Date </td>
+            <td>Points </td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var evaluation in Model)
+         {
+        <tr>
+            <td>@evaluation.id</td>
+            <td>@evaluation.classroomTitle</td>
+            <td>@evaluation.userName</td>
+            <td>@evaluation.periodBegin</td>
+            <td>@evaluation.periodEnd</td>
+            <td>@evaluation.date</td>
+            <td>@evaluation.totalPoint</td>
+            <td>@Html.ActionLink(
+                linkText: "Ajouter des résultats",
+                actionName: "AddResults",
+                controllerName: "Evaluation",
+                routeValues: new
+                {
+                id = @evaluation.id
+                },
+                htmlAttributes: new
+                {
+                target = "_blank",
+                }
+                )
+            </td>
+        </tr>
+         }
+    </tbody>
+</table>

@@ -1,0 +1,40 @@
+﻿@model PeriodModel
+@{
+    ViewBag.Title = "Read";
+}
+
+
+<h2>Read Period</h2>
+@Model.id
+@Model.begin
+@Model.end
+
+@Html.ActionLink(
+    linkText:  ""+@Model.year,
+    actionName: "Read",
+    controllerName: "Year",
+    routeValues: new
+    {
+        id = @Model.yearId   
+    },
+    htmlAttributes : new {
+        target="_blank"
+    }
+);
+
+@foreach (var eval in Model.evaluations)
+{
+    @Html.ActionLink(
+    linkText: @eval.classroomTitle + " " + @eval.date,
+    actionName: "Read",
+    controllerName: "Evaluation",
+    routeValues: new
+    {
+        id = @eval.id
+    },
+    htmlAttributes: new
+    {
+        target = "_blank"
+    }
+);
+}

@@ -1,0 +1,30 @@
+﻿@model List<ClassroomModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Titre </td>
+            <td>Année </td>
+            <td>Etablissement </td>
+            <td>Utilisateur</td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var classroom in Model) {
+        <tr>
+            <td>@classroom.id</td>
+            <td>@classroom.title</td>
+            <td>@classroom.year</td>
+            <td>@classroom.establishmentName</td>
+            <td>@classroom.userName</td>
+        </tr>
+         }
+    </tbody>
+</table>

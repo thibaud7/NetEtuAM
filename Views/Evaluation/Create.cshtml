@@ -1,0 +1,35 @@
+﻿@model EvaluationModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@{Html.BeginForm("Create", "Evaluation");}
+
+
+@Html.Label("User")
+@Html.DropDownList("idUser", 
+    new SelectList((IEnumerable<UserModel>) ViewData["users"], "Id", "FirstName"))
+                  
+@Html.Label("Classe")
+@Html.DropDownList("idClassroom", 
+    new SelectList((IEnumerable<ClassroomModel>) ViewData["classes"], "Id", "Title"))
+
+
+@Html.Label("Period")
+@Html.DropDownList("idPeriod", 
+    new SelectList((IEnumerable<PeriodModel>) ViewData["periods"], "Id", "Begin"))
+
+
+@Html.LabelFor(s => s.date)
+<input type="date" id="date" name="date" />
+
+@Html.Label("Total Points")
+<select data-val="true" data-val-required="Le champ classroomId est requis." id="totalPoint" name="totalPoint">
+<option value="10">10</option>
+<option value="20">20</option>
+<option value="100">100</option>
+</select>
+
+<input type="submit" value="Ajouter Evaluation"/>
+@{Html.EndForm();}

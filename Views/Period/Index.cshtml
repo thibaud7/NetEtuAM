@@ -1,0 +1,28 @@
+﻿@model List<PeriodModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Titre </td>
+            <td>Id (Cycle) </td>
+            <td>Titre (Cycle) </td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var period in Model) {
+        <tr>
+            <td>  @period.id</td>
+            <td>@period.begin</td>
+            <td>@period.end</td>
+            <td>@period.year</td>
+        </tr>
+         }
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+﻿@model ClassroomModel
+
+@{
+    ViewBag.Title = "Read";
+}
+
+<h2>Read Classroom</h2>
+
+@Model.id
+@Model.title
+@Model.establishmentName
+@Model.userName
+@foreach (var eval in Model.evaluations)
+{
+    @Html.ActionLink(
+        linkText:  @eval.date.ToShortDateString(),
+        actionName: "Read",
+        controllerName: "Evaluation",
+        routeValues: new
+        {
+            id = @eval.id   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    )
+}
+
+@foreach (var pupil in Model.pupils)
+{
+    @Html.ActionLink(
+        linkText:  @pupil.firstName + " " + @pupil.lastName,
+        actionName: "Read",
+        controllerName: "Pupil",
+        routeValues: new
+        {
+            id = @pupil.id   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    );
+}
+
+

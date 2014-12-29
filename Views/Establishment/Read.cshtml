@@ -1,0 +1,47 @@
+﻿@model EstablishmentModel
+
+@{
+    ViewBag.Title = "Read";
+}
+
+<h2>Read</h2>
+@Model.name
+<table>
+    <thead>
+        <tr>
+            <td>Nom</td>
+            <td>Adresse </td>
+            <td>Code Postal</td>
+            <td>Ville</td>
+            <td>Nom Utilisateur</td>
+            <td>Nom Academie</td>
+            <td>Classes</td>
+        </tr>
+    </thead>
+        <tbody>
+            <tr>
+        <td>@Model.name</td>
+        <td>@Model.address</td>
+        <td>@Model.postCode</td>
+        <td>@Model.town</td>
+        <td>@Model.userName</td>
+        <td>@Model.academyName</td>
+@foreach (var x in Model.classrooms) 
+{
+            @Html.ActionLink(
+                linkText: @x.title,
+                actionName: "Read",
+                controllerName: "Classroom",
+                routeValues: new
+                {
+                    id = @x.id
+                },
+                htmlAttributes: new
+                {
+                    target = "_blank"
+                }
+            )
+    <br />
+}        
+    </tr>
+</table>

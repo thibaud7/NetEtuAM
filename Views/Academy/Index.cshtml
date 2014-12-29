@@ -1,0 +1,36 @@
+﻿@model List<AcademyModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Nom </td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var academy in Model)
+         {
+        <tr>
+            <td>@academy.id</td>
+            
+            <td> @Html.ActionLink(
+                    linkText:  @academy.name,
+                    actionName: "Read",
+                    controllerName: "Academy",
+                    routeValues: new
+                    {
+                        id = @academy.id   
+                    },
+                    htmlAttributes : null
+                );
+              </td>
+        </tr>
+         }
+    </tbody>
+</table>

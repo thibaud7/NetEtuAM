@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Projet .NET Auvray - Monmert</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- cdn for modernizr, if you haven't included it already -->
+    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+    <!-- polyfiller file to detect and load polyfills -->
+    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+    <script>
+        webshims.setOptions('waitReady', false);
+        webshims.setOptions('forms-ext', { types: 'date' });
+        webshims.polyfill('forms forms-ext');
+    </script>
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+
+            <div class="float-left">
+                <img src="./Images/Universite.jpg" width="70" />
+                <nav>
+                    <ul class="niveau1" id="menu">
+                        <li>Administration
+                            <ul class="niveau2">
+                                <li class="plus">@Html.ActionLink("Académies", "Index", "Academy")</li>
+                                <li class="plus">@Html.ActionLink("Années", "Index", "Year")</li>
+                                <li class="plus">@Html.ActionLink("Cycles", "Index", "Cycle")</li>
+                                <li class="plus">@Html.ActionLink("Niveaux", "Index", "Level")</li>
+                                <li class="plus">@Html.ActionLink("Périodes", "Index", "Period")</li>
+                                <li class="plus">@Html.ActionLink("Utilisateurs", "Index", "User")</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <ul class="niveau1">
+                        <li>Etablissements & classes
+                            <ul class=" niveau2">
+                                <li class="plus">@Html.ActionLink("Classes", "Index", "Classroom")</li>
+                                <li class="plus">@Html.ActionLink("Etablissements", "Index", "Establishment")</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="niveau1">
+                        <li>El&egrave;ves
+                            <ul class=" niveau2">
+                                <li class="plus">@Html.ActionLink("Eleves", "Index", "Pupil")</li>
+                                <li class="plus">@Html.ActionLink("Tuteurs", "Index", "Tutor")</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="niveau1">
+                        <li>Evaluations
+                            <ul class=" niveau2">
+                                <li class="plus">@Html.ActionLink("Evaluation", "Index", "Evaluation")</li>
+                                <li class="plus">@Html.ActionLink("Résultats", "Index", "Result")</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="float-right">
+                <section id="header">
+                    @Html.Partial("_Header")
+                </section>
+            </div>
+
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

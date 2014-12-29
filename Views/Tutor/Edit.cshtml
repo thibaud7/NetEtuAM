@@ -1,0 +1,40 @@
+﻿@model TutorModel
+
+<h2>Editer</h2>
+
+@{Html.BeginForm("Edit", "Tutor");}
+
+@Html.LabelFor(s => s.firstName)
+@Html.TextBoxFor(s => s.firstName)
+@Html.ValidationMessageFor(s => s.firstName)
+
+@Html.LabelFor(s => s.address)
+@Html.TextBoxFor(s => s.address)
+@Html.ValidationMessageFor(s => s.address)
+
+@Html.LabelFor(s => s.lastName)
+@Html.TextBoxFor(s => s.lastName)
+@Html.ValidationMessageFor(s => s.lastName)
+
+@Html.LabelFor(s => s.town)
+@Html.TextBoxFor(s => s.town)
+@Html.ValidationMessageFor(s => s.town)
+
+@Html.LabelFor(s => s.postCode)
+@Html.TextBoxFor(s => s.postCode)
+@Html.ValidationMessageFor(s => s.postCode)
+
+@Html.LabelFor(s => s.mail)
+@Html.TextBoxFor(s => s.mail)
+@Html.ValidationMessageFor(s => s.mail)
+
+@Html.LabelFor(s => s.tel)
+@Html.TextBoxFor(s => s.tel)
+@Html.ValidationMessageFor(s => s.tel)
+
+@Html.LabelFor(s => s.comment)
+@Html.TextBoxFor(s => s.comment)
+@Html.ValidationMessageFor(s => s.comment)
+
+<input type="submit" value="Ajouter Tuteur"/>
+@{Html.EndForm();}

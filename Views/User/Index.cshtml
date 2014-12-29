@@ -1,0 +1,30 @@
+﻿@model List<UserModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Prénom </td>
+            <td>Nom </td>
+            <td>UserName</td>
+            <td>Email</td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var user in Model) {
+        <tr>
+            <td>@user.id</td>
+            <td>@user.firstName</td>
+            <td>@user.lastName</td>
+            <td>@user.userName</td>
+            <td>@user.mail</td>
+        </tr>
+         }
+    </tbody>
+</table>

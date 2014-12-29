@@ -1,0 +1,30 @@
+﻿@model TutorModel
+
+@{
+    ViewBag.Title = "Read";
+}
+
+<h2>Read - Tutor</h2>
+
+@Model.id
+@Model.lastName
+@Model.firstName
+@Model.address
+@Model.postCode
+@Model.town
+@Model.tel
+@Model.mail
+@Model.comment
+
+@Html.ActionLink(
+                    linkText: "Editer",
+                    actionName: "Edit",
+                    controllerName: "Tutor",
+                    routeValues: new
+                    {
+                        id = @Model.id   
+                    },
+                    htmlAttributes: null
+                )
+
+

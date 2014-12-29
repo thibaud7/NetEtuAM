@@ -1,0 +1,38 @@
+﻿@model List<TutorModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Prénom </td>
+            <td>Nom </td>
+            <td>Adresse </td>
+            <td>Code Postal</td>
+            <td>Ville</td>
+            <td>Telephone</td>
+            <td>Email</td>
+            <td>Commentaire</td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var tutor in Model) {
+        <tr>
+            <td>@tutor.id</td>
+            <td>@tutor.firstName</td>
+            <td>@tutor.lastName</td>
+            <td>@tutor.address</td>
+            <td>@tutor.postCode</td>
+            <td>@tutor.town</td>
+            <td>@tutor.tel</td>
+            <td>@tutor.mail</td>
+            <td>@tutor.comment</td>
+        </tr>
+         }
+    </tbody>
+</table>

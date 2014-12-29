@@ -1,0 +1,24 @@
+﻿@model CycleModel
+
+@{
+    ViewBag.Title = "Read";
+}
+
+<h2>Read</h2>
+@Model.id
+@Model.title
+@foreach (var level in Model.levels)
+{
+    @Html.ActionLink(
+        linkText:  @level.title,
+        actionName: "Read",
+        controllerName: "Level",
+        routeValues: new
+        {
+            id = @level.id   
+        },
+        htmlAttributes : new {
+            target="_blank"
+        }
+    );
+}
