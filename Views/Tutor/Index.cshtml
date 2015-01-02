@@ -18,13 +18,24 @@
             <td>Telephone</td>
             <td>Email</td>
             <td>Commentaire</td>
+            <td>Editer</td>
         </tr>
     </thead>
     <tbody>
          @foreach (var tutor in Model) {
         <tr>
             <td>@tutor.id</td>
-            <td>@tutor.firstName</td>
+            <td> @Html.ActionLink(
+                    linkText:  @tutor.firstName,
+                    actionName: "Read",
+                    controllerName: "Tutor",
+                    routeValues: new
+                    {
+                        id = @tutor.id   
+                    },
+                    htmlAttributes : null
+                );
+            </td>
             <td>@tutor.lastName</td>
             <td>@tutor.address</td>
             <td>@tutor.postCode</td>
@@ -32,6 +43,17 @@
             <td>@tutor.tel</td>
             <td>@tutor.mail</td>
             <td>@tutor.comment</td>
+            <td> @Html.ActionLink(
+                    linkText:  "Editer",
+                    actionName: "Edit",
+                    controllerName: "Tutor",
+                    routeValues: new
+                    {
+                        id = @tutor.id   
+                    },
+                    htmlAttributes : null
+                );
+            </td>
         </tr>
          }
     </tbody>

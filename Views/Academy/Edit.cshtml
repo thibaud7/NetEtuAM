@@ -1,0 +1,17 @@
+﻿@model AcademyModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Pupil</h2>
+
+
+@{Html.BeginForm("Edit", "Academy");}
+
+@Html.LabelFor(s => s.name)
+@Html.TextBoxFor(s => s.name)
+@Html.ValidationMessageFor(s => s.name)
+
+
+<input type="submit" value="Modifier Académie"/>
+@{Html.EndForm();}

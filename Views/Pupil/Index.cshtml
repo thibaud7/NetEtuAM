@@ -18,13 +18,24 @@
             <td>Professeur</td>
             <td>Classe</td>
             <td>Niveau</td>
+            <td>Editer</td>
         </tr>
     </thead>
     <tbody>
          @foreach (var pupil in Model) {
         <tr>
             <td>@pupil.id</td>
-            <td>@pupil.firstName</td>
+            <td> @Html.ActionLink(
+                    linkText:  @pupil.firstName,
+                    actionName: "Read",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id   
+                    },
+                    htmlAttributes : null
+                );
+            </td>
             <td>@pupil.lastName</td>
             <td>@pupil.sex</td>
             <td>@pupil.birthdayDate</td>
@@ -32,6 +43,17 @@
             <td>@pupil.tutorLastName</td>
             <td>@pupil.classroomTitle</td>
             <td>@pupil.levelTitle</td>
+            <td> @Html.ActionLink(
+                    linkText:  "Editer",
+                    actionName: "Edit",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id   
+                    },
+                    htmlAttributes : null
+                );
+            </td>
         </tr>
          }
     </tbody>

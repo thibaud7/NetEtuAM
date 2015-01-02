@@ -1,0 +1,36 @@
+﻿@model EstablishmentModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Pupil</h2>
+
+
+@{Html.BeginForm("Edit", "Establishment");}
+
+@Html.LabelFor(s => s.name)
+@Html.TextBoxFor(s => s.name)
+@Html.ValidationMessageFor(s => s.name)
+
+@Html.LabelFor(s => s.postCode)
+@Html.TextBoxFor(s => s.postCode)
+@Html.ValidationMessageFor(s => s.postCode)
+
+@Html.LabelFor(s => s.address)
+@Html.TextBoxFor(s => s.address)
+@Html.ValidationMessageFor(s => s.address)
+
+@Html.LabelFor(s => s.town)
+@Html.TextBoxFor(s => s.town)
+@Html.ValidationMessageFor(s => s.town)
+
+@Html.Label("Utilisateur")
+@Html.DropDownList("userId", 
+    new SelectList((IEnumerable<UserModel>) ViewData["users"], "Id", "UserName"))
+                  
+@Html.Label("Académie")
+@Html.DropDownList("academyId", 
+    new SelectList((IEnumerable<AcademyModel>) ViewData["academies"], "Id", "Name"))
+
+<input type="submit" value="Modifier Etablissement"/>
+@{Html.EndForm();}

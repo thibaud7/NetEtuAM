@@ -104,8 +104,30 @@ namespace AuvrayMonmertNetEdu.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new PupilRepository(x);
+                PupilModel pupil = repo.getById(id).Select(s => new PupilModel
+                {
+                    id = s.Id,
+                    lastName = s.LastName,
+                    firstName = s.FirstName,
+                    levelTitle = s.Level.Title,
+                    sex = s.Sex,
+                    birthdayDate = s.BirthdayDate,
+                    tutorLastName = s.Tutor.LastName,
+                    classroomTitle = s.Classroom.Title,
+                    levelId = s.Level_Id,
+                    tutorId = s.Tutor_Id,
+                    classroomId = s.Classroom_Id
+                }).First();
 
-
+                return View(pupil);
+            }
+        }
 
         [HttpGet]
         public ActionResult Read(Guid id)
@@ -144,6 +166,70 @@ namespace AuvrayMonmertNetEdu.Controllers
 
         }
 
+        public ActionResult ExportToExcel()
+        {
+            using (var x = new Entities())
+            {
+                var repo = new PupilRepository(x);
+                List<PupilModel> pupils = repo.All().Select(s => new PupilModel
+                {
+                    id = s.Id,
+                    lastName = s.LastName,
+                    firstName = s.FirstName,
+                    levelTitle = s.Level.Title,
+                    sex = s.Sex,
+                    birthdayDate = s.BirthdayDate,
+                    tutorLastName = s.Tutor.LastName,
+                    classroomTitle = s.Classroom.Title,
+                    levelId = s.Level_Id,
+                    tutorId = s.Tutor_Id,
+                    classroomId = s.Classroom_Id
+                }).ToList();
+
+                var products = new System.Data.DataTable("Pupils");
+                products.Columns.Add("Id", typeof(Guid));
+                products.Columns.Add("Last Name", typeof(string));
+                products.Columns.Add("First Name", typeof(string));
+                products.Columns.Add("Level", typeof(string));
+                products.Columns.Add("Sex", typeof(short));
+                products.Columns.Add("Birthday Date", typeof(DateTime));
+                products.Columns.Add("Tutor", typeof(string));
+                products.Columns.Add("Classroom", typeof(string));
+                foreach (PupilModel p in pupils)
+                {
+                    products.Rows.Add(
+                        p.id,
+                        p.lastName,
+                        p.firstName,
+                        p.levelTitle,
+                        p.sex,
+                        p.birthdayDate,
+                        p.tutorLastName,
+                        p.classroomTitle
+                    );
+                }
+                var grid = new GridView();
+                grid.DataSource = products;
+                grid.DataBind();
+
+                Response.ClearContent();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment; filename=MyExcelFile.xls");
+                Response.ContentType = "application/ms-excel";
+
+                Response.Charset = "";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+                grid.RenderControl(htw);
+
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+
+                return View("~/Views/Pupil/Index.cshtml");
+            }
+        }
 
         public Pupil createPupilToPupilModel(PupilModel m)
         {

@@ -417,6 +417,9 @@
     <Content Include="Views\Evaluation\AddResults.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Pupil\Edit.cshtml" />
+    <Content Include="Views\Academy\Edit.cshtml" />
+    <Content Include="Views\Establishment\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

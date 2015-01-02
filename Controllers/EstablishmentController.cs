@@ -64,5 +64,28 @@ namespace AuvrayMonmertNetEdu.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new EstablishmentRepository(x);
+                EstablishmentModel establishment = repo.getById(id).Select(s => new EstablishmentModel
+                {
+                    id = s.Id,
+                    name = s.Name,
+                    postCode = s.PostCode,
+                    town = s.Town,
+                    userName = s.User.UserName,
+                    academyName = s.Academy.Name,
+                    address = s.Address,
+                    academyId = s.Academie_Id,
+                    userId = s.User_Id
+
+                }).First();
+                return View(establishment);
+            }
+        }
+
     }
 }

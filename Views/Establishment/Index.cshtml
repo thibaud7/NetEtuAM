@@ -16,6 +16,7 @@
             <td>Ville</td>
             <td>Utilisateur</td>
             <td>Academie</td>
+            <td>Editer</td>
         </tr>
     </thead>
     <tbody>
@@ -23,12 +24,33 @@
          {
         <tr>
             <td>@establishment.id</td>
-            <td>@establishment.name</td>
+            <td> @Html.ActionLink(
+                    linkText:  @establishment.name,
+                    actionName: "Read",
+                    controllerName: "Establishment",
+                    routeValues: new
+                    {
+                        id = @establishment.id   
+                    },
+                    htmlAttributes : null
+                );
+            </td>
             <td>@establishment.address</td>
             <td>@establishment.postCode</td>
             <td>@establishment.town</td>
             <td>@establishment.userName</td>
             <td>@establishment.academyName</td>
+            <td> @Html.ActionLink(
+                    linkText:  "Editer",
+                    actionName: "Edit",
+                    controllerName: "Establishment",
+                    routeValues: new
+                    {
+                        id = @establishment.id   
+                    },
+                    htmlAttributes : null
+                );
+            </td>
         </tr>
          }
     </tbody>

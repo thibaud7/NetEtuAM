@@ -11,6 +11,7 @@
         <tr>
             <td>Id </td>
             <td>Nom </td>
+            <td>Editer</td>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,18 @@
             <td> @Html.ActionLink(
                     linkText:  @academy.name,
                     actionName: "Read",
+                    controllerName: "Academy",
+                    routeValues: new
+                    {
+                        id = @academy.id   
+                    },
+                    htmlAttributes : null
+                );
+              </td>
+
+              <td> @Html.ActionLink(
+                    linkText:  "Editer",
+                    actionName: "Edit",
                     controllerName: "Academy",
                     routeValues: new
                     {
