@@ -23,7 +23,8 @@ namespace AuvrayMonmertNetEdu.Controllers
                     evaluationId = s.Evaluation_Id,
                     pupilFirstName = s.Pupil.FirstName,
                     pupilLastName = s.Pupil.LastName,
-                    note = s.Note
+                    note = s.Note,
+                    pupilId = s.Pupil_Id
                 }).ToList();
                 return View(list);
             }

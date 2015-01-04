@@ -4,22 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ensemble des académies</h2>
 
 <table>
     <thead>
         <tr>
-            <td>Id </td>
             <td>Nom </td>
-            <td>Editer</td>
+            <td>Operation</td>
         </tr>
     </thead>
     <tbody>
          @foreach (var academy in Model)
          {
         <tr>
-            <td>@academy.id</td>
-            
             <td> @Html.ActionLink(
                     linkText:  @academy.name,
                     actionName: "Read",
@@ -29,7 +26,7 @@
                         id = @academy.id   
                     },
                     htmlAttributes : null
-                );
+                )
               </td>
 
               <td> @Html.ActionLink(
@@ -41,7 +38,7 @@
                         id = @academy.id   
                     },
                     htmlAttributes : null
-                );
+                )
               </td>
         </tr>
          }

@@ -65,5 +65,29 @@ namespace AuvrayMonmertNetEdu.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Edit(AcademyModel sm)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new AcademyRepository(x);
+
+
+                Academy o = repo.getById(sm.id).First();
+                o = createAcademyToAcademyModel(sm);
+                repo.Save();
+                return View("~/Views/Academy/Read.cshtml", sm);
+
+            }
+        }
+
+        private Academy createAcademyToAcademyModel(AcademyModel sm)
+        {
+            Academy a = new Academy();
+            a.Id = sm.id;
+            a.Name = sm.name;
+            return a;
+        }
+
     }
 }

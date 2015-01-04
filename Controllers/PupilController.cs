@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AuvrayMonmertNetEdu.Models;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
 
 namespace AuvrayMonmertNetEdu.Controllers
 {
@@ -27,7 +30,9 @@ namespace AuvrayMonmertNetEdu.Controllers
                     state  = s.State,
                     tutorLastName = s.Tutor.LastName,
                     classroomTitle = s.Classroom.Title,
-                    levelTitle = s.Level.Title
+                    levelTitle = s.Level.Title,
+                    classroomId = s.Classroom_Id,
+                    tutorId = s.Tutor_Id
                 }).ToList();
                 return View(list);
             }
@@ -109,6 +114,30 @@ namespace AuvrayMonmertNetEdu.Controllers
         {
             using (var x = new Entities())
             {
+                ClassroomRepository prepo = new ClassroomRepository(x);
+                List<ClassroomModel> lp = prepo.All().Select(s => new ClassroomModel
+                {
+                    id = s.Id,
+                    title = s.Title
+                }).ToList();
+                ViewData["classes"] = lp;
+
+                LevelRepository lrepo = new LevelRepository(x);
+                List<LevelModel> ll = lrepo.All().Select(s => new LevelModel
+                {
+                    id = s.Id,
+                    title = s.Title
+                }).ToList();
+                ViewData["levels"] = ll;
+
+                TutorRepository erepo = new TutorRepository(x);
+                List<TutorModel> l = erepo.All().Select(s => new TutorModel
+                {
+                    id = s.Id,
+                    firstName = s.FirstName,// Pour affichage Prénom Nom dans la vue 
+                }).ToList();
+                ViewData["tutors"] = l;
+                
                 var repo = new PupilRepository(x);
                 PupilModel pupil = repo.getById(id).Select(s => new PupilModel
                 {
@@ -126,6 +155,32 @@ namespace AuvrayMonmertNetEdu.Controllers
                 }).First();
 
                 return View(pupil);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(PupilModel sm)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new PupilRepository(x);
+                PupilModel pupil = repo.getById(sm.id).Select(s => new PupilModel
+                {
+                    levelTitle = s.Level.Title,
+                    tutorLastName = s.Tutor.LastName,
+                    classroomTitle = s.Classroom.Title,
+
+                }).First();
+
+                sm.classroomTitle = pupil.classroomTitle;
+                sm.levelTitle = pupil.levelTitle;
+                sm.tutorLastName = pupil.tutorLastName;
+                Pupil o = repo.getById(sm.id).First();
+                createPupilToPupilModel(o,sm);
+                repo.Save();
+                Pupil oo = repo.getById(sm.id).First();
+                return View("~/Views/Pupil/Read.cshtml", sm);
+
             }
         }
 
@@ -244,6 +299,20 @@ namespace AuvrayMonmertNetEdu.Controllers
             p.Tutor_Id = m.tutorId;
             p.Classroom_Id = m.classroomId;
             return p;
+        }
+
+        public void createPupilToPupilModel(Pupil p, PupilModel m)
+        {
+
+            p.BirthdayDate = m.birthdayDate;
+            p.Id = m.id;
+            p.LastName = m.lastName;
+            p.Level_Id = m.levelId;
+            p.Sex = m.sex;
+            p.State = 1;
+            p.FirstName = m.firstName;
+            p.Tutor_Id = m.tutorId;
+            p.Classroom_Id = m.classroomId;
         }
     }
 }

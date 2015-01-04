@@ -4,12 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ensemble des établissements</h2>
+
+ @Html.ActionLink(
+                    linkText:  "Ajouter un établissement",
+                    actionName: "Create",
+                    controllerName: "Establishment",
+                    routeValues: null,
+                    htmlAttributes : null
+                )
 
 <table>
     <thead>
         <tr>
-            <td>Id </td>
             <td>Nom </td>
             <td>Adresse </td>
             <td>Code Postal </td>
@@ -23,7 +30,6 @@
          @foreach (var establishment in Model)
          {
         <tr>
-            <td>@establishment.id</td>
             <td> @Html.ActionLink(
                     linkText:  @establishment.name,
                     actionName: "Read",
@@ -33,13 +39,39 @@
                         id = @establishment.id   
                     },
                     htmlAttributes : null
-                );
+                )
             </td>
             <td>@establishment.address</td>
             <td>@establishment.postCode</td>
             <td>@establishment.town</td>
-            <td>@establishment.userName</td>
-            <td>@establishment.academyName</td>
+            <td>@Html.ActionLink(
+                    linkText:  @establishment.userName,
+                    actionName: "Read",
+                    controllerName: "User",
+                    routeValues: new
+                    {
+                        id = @establishment.userId   
+                    },
+                    htmlAttributes : new
+                {
+                    target = "_blank"
+                }
+                )</td>
+            <td>
+                @Html.ActionLink(
+                    linkText:  @establishment.academyName,
+                    actionName: "Read",
+                    controllerName: "Academy",
+                    routeValues: new
+                    {
+                        id = @establishment.academyId   
+                    },
+                    htmlAttributes : new
+                {
+                    target = "_blank"
+                }
+                )
+            </td>
             <td> @Html.ActionLink(
                     linkText:  "Editer",
                     actionName: "Edit",

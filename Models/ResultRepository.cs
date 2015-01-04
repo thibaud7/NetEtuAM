@@ -34,6 +34,7 @@ namespace AuvrayMonmertNetEdu.Models
             context.SaveChanges();
         }
 
+
         public void Add(Result s)
         {
             context.Results.Add(s);

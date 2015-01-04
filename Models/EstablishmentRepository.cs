@@ -30,5 +30,15 @@ namespace AuvrayMonmertNetEdu.Models
         }
 
 
+
+        public void Add(Establishment p)
+        {
+            context.Establishments.Add(p);
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

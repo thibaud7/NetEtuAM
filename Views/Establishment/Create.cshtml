@@ -3,10 +3,10 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Editer l'établissement</h2>
+<h2>Ajouter etablissement</h2>
 
 
-@{Html.BeginForm("Edit", "Establishment");}
+@{Html.BeginForm("Create", "Establishment");}
 
 @Html.LabelFor(s => s.name)
 @Html.TextBoxFor(s => s.name)
@@ -32,5 +32,5 @@
 @Html.DropDownList("academyId", 
     new SelectList((IEnumerable<AcademyModel>) ViewData["academies"], "Id", "Name"))
 
-<input type="submit" value="Modifier Etablissement"/>
+<input type="submit" value="Ajouter Etablissement"/>
 @{Html.EndForm();}

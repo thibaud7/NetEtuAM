@@ -4,14 +4,19 @@
     ViewBag.Title = "Read";
 }
 
-<h2>Read Classroom</h2>
+<h2>Classe</h2>
 
-@Model.id
-@Model.title
-@Model.establishmentName
-@Model.userName
+    <p>Nom de la classe : @Model.title</p>
+    <p>Nom de l'etablissement : @Model.establishmentName</p>
+    <p>Nom de l'utilisateur : @Model.userName</p>
+
+    Liste des evaluations
+    <table>
+    <tbody>
+        <tr>    
 @foreach (var eval in Model.evaluations)
 {
+    <td>
     @Html.ActionLink(
         linkText:  @eval.date.ToShortDateString(),
         actionName: "Read",
@@ -24,8 +29,14 @@
             target="_blank"
         }
     )
+    
+        </td>
 }
+      </tr></tbody></table>
 
+Liste des élèves :
+<table>
+    <tr> 
 @foreach (var pupil in Model.pupils)
 {
     @Html.ActionLink(
@@ -42,4 +53,4 @@
     );
 }
 
-
+</tr></table>

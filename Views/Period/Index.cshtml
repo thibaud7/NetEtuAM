@@ -9,19 +9,41 @@
 <table>
     <thead>
         <tr>
-            <td>Id </td>
-            <td>Titre </td>
-            <td>Id (Cycle) </td>
-            <td>Titre (Cycle) </td>
+            <td>Voir </td>
+            <td>Début de la période </td>
+            <td>Fin de période </td>
+            <td>Année </td>
         </tr>
     </thead>
     <tbody>
          @foreach (var period in Model) {
         <tr>
-            <td>  @period.id</td>
+            <td>  
+@Html.ActionLink(
+linkText: "Voir",
+actionName: "Read",
+controllerName: "Period",
+routeValues: new
+{
+id = @period.id
+},
+htmlAttributes: null
+)</td>
             <td>@period.begin</td>
             <td>@period.end</td>
-            <td>@period.year</td>
+            <td>@Html.ActionLink(
+linkText: @period.year + "",
+actionName: "Read",
+controllerName: "Year",
+routeValues: new
+{
+    id = @period.yearId
+},
+htmlAttributes: new
+{
+    target="_blank"
+}
+) </td>
         </tr>
          }
     </tbody>

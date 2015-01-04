@@ -4,23 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Différents niveaux scolaires associés à leurs cycles</h2>
 
 <table>
     <thead>
         <tr>
-            <td>Id </td>
             <td>Titre </td>
-            <td>Id (Cycle) </td>
-            <td>Titre (Cycle) </td>
+            <td>Cycle </td>
         </tr>
     </thead>
     <tbody>
          @foreach (var level in Model) {
         <tr>
-            <td>@level.id</td>
             <td>@level.title</td>
-            <td>@level.idCycle</td>
             <td>@level.nomCycle</td>
         </tr>
          }

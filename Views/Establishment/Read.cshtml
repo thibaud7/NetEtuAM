@@ -15,7 +15,6 @@
             <td>Ville</td>
             <td>Nom Utilisateur</td>
             <td>Nom Academie</td>
-            <td>Classes</td>
         </tr>
     </thead>
         <tbody>
@@ -26,10 +25,14 @@
         <td>@Model.town</td>
         <td>@Model.userName</td>
         <td>@Model.academyName</td>
+</tr>
+</table>
+<br />
+Ensemble des classes : <br />
 @foreach (var x in Model.classrooms) 
 {
             @Html.ActionLink(
-                linkText: @x.title,
+                linkText: " - " + @x.title,
                 actionName: "Read",
                 controllerName: "Classroom",
                 routeValues: new
@@ -40,8 +43,7 @@
                 {
                     target = "_blank"
                 }
-            )
+            ) 
     <br />
 }        
-    </tr>
-</table>
+    

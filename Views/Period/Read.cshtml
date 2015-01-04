@@ -4,11 +4,10 @@
 }
 
 
-<h2>Read Period</h2>
-@Model.id
-@Model.begin
-@Model.end
+<h2>Periode</h2>
 
+La période commence le <b>@Model.begin</b> et se termine le <b>@Model.end</b>
+de l'année 
 @Html.ActionLink(
     linkText:  ""+@Model.year,
     actionName: "Read",
@@ -20,11 +19,15 @@
     htmlAttributes : new {
         target="_blank"
     }
-);
+).
 
+<br />
+
+Les évaluations sur cette période :
+<table>
 @foreach (var eval in Model.evaluations)
 {
-    @Html.ActionLink(
+    <tr><td>@Html.ActionLink(
     linkText: @eval.classroomTitle + " " + @eval.date,
     actionName: "Read",
     controllerName: "Evaluation",
@@ -36,5 +39,7 @@
     {
         target = "_blank"
     }
-);
+)
+        </td></tr>
 }
+    </table>

@@ -6,10 +6,19 @@
 
 <h2>Index</h2>
 
+
+@Html.ActionLink(
+linkText: "Ajouter une évaluation",
+actionName: "Create",
+controllerName: "Evaluation",
+routeValues: null,
+htmlAttributes: null
+)
+
 <table>
     <thead>
         <tr>
-            <td>Id </td>
+            <td>Voir</td>
             <td>Classe </td>
             <td>Utilisateur </td>
             <td>Debut periode </td>
@@ -22,9 +31,46 @@
          @foreach (var evaluation in Model)
          {
         <tr>
-            <td>@evaluation.id</td>
-            <td>@evaluation.classroomTitle</td>
-            <td>@evaluation.userName</td>
+            <td>
+                @Html.ActionLink(
+                linkText: "Voir",
+                actionName: "Read",
+                controllerName: "Evaluation",
+                routeValues: new
+                {
+                id = @evaluation.id
+                },
+                htmlAttributes: null
+                )
+            </td>
+            <td>
+                @Html.ActionLink(
+                linkText: @evaluation.classroomTitle,
+                actionName: "Read",
+                controllerName: "Classroom",
+                routeValues: new
+                {
+                id = @evaluation.idClassroom
+                },
+                htmlAttributes: new
+                {
+                target = "_blank",
+                }
+                )
+            </td>
+            <td>@Html.ActionLink(
+                linkText: @evaluation.userName,
+                actionName: "Read",
+                controllerName: "User",
+                routeValues: new
+                {
+                id = @evaluation.idUser
+                },
+                htmlAttributes: new
+                {
+                target = "_blank",
+                }
+                )</td>
             <td>@evaluation.periodBegin</td>
             <td>@evaluation.periodEnd</td>
             <td>@evaluation.date</td>

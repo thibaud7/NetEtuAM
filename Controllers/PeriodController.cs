@@ -22,7 +22,8 @@ namespace AuvrayMonmertNetEdu.Controllers
                     id = s.Id,
                     begin = s.Begin,
                     end = s.End,
-                    year = s.Year.Year1
+                    year = s.Year.Year1,
+                    yearId = s.Year_Id
                 }).ToList();
                 return View(list);
             }

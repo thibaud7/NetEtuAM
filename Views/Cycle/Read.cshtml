@@ -4,9 +4,9 @@
     ViewBag.Title = "Read";
 }
 
-<h2>Read</h2>
-@Model.id
-@Model.title
+<h2>@Model.title</h2>
+
+Pour le cycle : <b>@Model.title</b>, voici l'ensemble des niveaux : <br />
 @foreach (var level in Model.levels)
 {
     @Html.ActionLink(

@@ -4,17 +4,12 @@
     ViewBag.Title = "Read";
 }
 
-<h2>Read</h2>
+<h2>@Model.firstName @Model.lastName</h2>
 
+<div>
+Il est né le : @Model.birthdayDate.ToShortDateString() <br />
 
-@Model.firstName
-@Model.lastName
-@Model.sex
-@Model.birthdayDate
-
-
-
-
+Classe actuelle : 
 @Html.ActionLink(
         linkText:  @Model.classroomTitle,
         actionName: "Read",
@@ -26,11 +21,9 @@
         htmlAttributes : new {
             target="_blank"
         }
-    )
+    ),
 
-
-
-
+niveau : 
 @Html.ActionLink(
         linkText:  @Model.levelTitle,
         actionName: "Read",
@@ -44,8 +37,9 @@
         }
     )
 
+<br />
 
-
+Tuteur de l'élève : 
 @Html.ActionLink(
         linkText:  @Model.tutorLastName,
         actionName: "Read",
@@ -58,13 +52,15 @@
             target="_blank"
         }
     )
+<br />
 
 
-
-
-
+</div>
+Voici l'ensemble de ses résultats : 
+<table>
 @foreach (var eval in Model.results)
 {
+    <tr><td>
     @Html.ActionLink(
         linkText:  @eval.note.ToString() +"/"+ @eval.totalNote,
         actionName: "Read",
@@ -76,5 +72,6 @@
         htmlAttributes : new {
             target="_blank"
         }
-    )
+    )</td></tr>
 }
+    </table>

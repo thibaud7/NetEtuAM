@@ -25,7 +25,9 @@ namespace AuvrayMonmertNetEdu.Controllers
                     periodBegin = s.Period.Begin,
                     periodEnd = s.Period.End,
                     date = s.Date,
-                    totalPoint = s.TotalPoint
+                    totalPoint = s.TotalPoint,
+                    idUser = s.User_Id,
+                    idClassroom =s.Classroom_Id
                 }).ToList();
                 return View(list);
             }
@@ -55,7 +57,8 @@ namespace AuvrayMonmertNetEdu.Controllers
                     userName = s.User.FirstName + " " + s.User.LastName,
                     idClassroom = s.Classroom_Id,
                     idPeriod = s.Period_Id,
-                    idUser = s.User_Id
+                    idUser = s.User_Id,
+                    totalPoint =s.TotalPoint,
                 }).First();
                 eval.resultats = listResults;
                 return View(eval);

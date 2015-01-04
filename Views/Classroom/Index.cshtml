@@ -4,12 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ensemble des classes</h2>
+<p>@Html.ActionLink(
+                linkText: "Créer une classe",
+                actionName: "Create",
+                controllerName: "Classroom",
+                routeValues: null,
+                htmlAttributes: null)</p>
 
 <table>
     <thead>
         <tr>
-            <td>Id </td>
             <td>Titre </td>
             <td>Année </td>
             <td>Etablissement </td>
@@ -19,11 +24,63 @@
     <tbody>
          @foreach (var classroom in Model) {
         <tr>
-            <td>@classroom.id</td>
-            <td>@classroom.title</td>
-            <td>@classroom.year</td>
-            <td>@classroom.establishmentName</td>
-            <td>@classroom.userName</td>
+            <td>
+                @Html.ActionLink(
+                linkText: @classroom.title,
+                actionName: "Read",
+                controllerName: "Classroom",
+                routeValues: new
+                {
+                    id = @classroom.id
+                },
+                htmlAttributes: new
+                {
+                    target = "_blank"
+                }
+            ) 
+            </td>
+            <td>@Html.ActionLink(
+                linkText: @classroom.year + "",
+                actionName: "Read",
+                controllerName: "Year",
+                routeValues: new
+                {
+                    id = @classroom.yearId
+                },
+                htmlAttributes: new
+                {
+                    target = "_blank"
+                }
+            )</td>
+            <td>
+                @Html.ActionLink(
+                linkText: @classroom.establishmentName,
+                actionName: "Read",
+                controllerName: "Establishment",
+                routeValues: new
+                {
+                    id = @classroom.establishmentId
+                },
+                htmlAttributes: new
+                {
+                    target = "_blank"
+                }
+            )
+
+            </td>
+            <td> @Html.ActionLink(
+                linkText: @classroom.userName,
+                actionName: "Read",
+                controllerName: "User",
+                routeValues: new
+                {
+                    id = @classroom.userId
+                },
+                htmlAttributes: new
+                {
+                    target = "_blank"
+                }
+            )</td>
         </tr>
          }
     </tbody>

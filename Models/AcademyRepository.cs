@@ -23,5 +23,10 @@ namespace AuvrayMonmertNetEdu.Models
         {
             return context.Academies.Where(s => s.Id == id);
         }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

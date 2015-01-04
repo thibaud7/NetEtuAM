@@ -4,9 +4,42 @@
     ViewBag.Title = "Read";
 }
 
-<h2>Read</h2>
+<h2>Evaluation</h2>
 
+
+<br />
+Evaluation sur la période du  : 
 @Html.ActionLink(
+    linkText:  @Model.periodBegin + " au " + @Model.periodEnd,
+    actionName: "Read",
+    controllerName: "Period",
+    routeValues: new
+    {
+        id = @Model.idPeriod  
+    },
+    htmlAttributes : new {
+        target="_blank"
+    }
+)
+
+<br />
+Créé par : 
+@Html.ActionLink(
+    linkText:  @Model.userName,
+    actionName: "Read",
+    controllerName: "User",
+    routeValues: new
+    {
+        id = @Model.idUser
+    },
+    htmlAttributes : new {
+        target="_blank"
+    }
+)
+
+<br />
+
+Pour la classe : @Html.ActionLink(
     linkText:  @Model.classroomTitle,
     actionName: "Read",
     controllerName: "Classroom",
@@ -19,40 +52,23 @@
     }
 );
 
-@Html.ActionLink(
-    linkText:  @Model.periodBegin + " / " + @Model.periodEnd,
-    actionName: "Read",
-    controllerName: "Period",
-    routeValues: new
-    {
-        id = @Model.idPeriod  
-    },
-    htmlAttributes : new {
-        target="_blank"
-    }
-);
 
-@Html.ActionLink(
-    linkText:  @Model.userName,
-    actionName: "Read",
-    controllerName: "User",
-    routeValues: new
-    {
-        id = @Model.idUser
-    },
-    htmlAttributes : new {
-        target="_blank"
-    }
-);
+<br />
 
-@Model.date
-
-@Model.totalPoint
-
+Le, @Model.date, noté sur : @Model.totalPoint
+<br />
+Les résultats :
+<table>
+    <thead>
+        <tr>Nom - Note</tr>
+    </thead>
+    <tbody>
+        
 @foreach (var res in Model.resultats)
 {
+    <tr><td>
     @Html.ActionLink(
-    linkText: @res.pupilFirstName + " " + @res.pupilLastName + " : " + @res.totalNote + "/" + @Model.totalPoint,
+    linkText: @res.pupilFirstName + " " + @res.pupilLastName + " : " + @res.note + "/" + @Model.totalPoint,
     actionName: "Read",
     controllerName: "Result",
     routeValues: new
@@ -63,5 +79,10 @@
     {
         target = "_blank"
     }
-);
+    
+)
+
+        </td></tr>
 }
+        </tbody>
+</table>

@@ -9,21 +9,55 @@
 <table>
     <thead>
         <tr>
-            <td>Id </td>
+            <td>Voir</td>
             <td>Evaluation </td>
             <td>Prenom eleve </td>
-            <td>Nom eleve </td>
-            <td>Fin periode </td>
+            <td>Note </td>
         </tr>
     </thead>
     <tbody>
          @foreach (var result in Model)
          {
         <tr>
-            <td>@result.id</td>
-            <td>@result.evaluationId</td>
-            <td>@result.pupilFirstName</td>
-            <td>@result.pupilLastName</td>
+            <td>
+                 @Html.ActionLink(
+                    linkText:  "voir",
+                    actionName: "Read",
+                    controllerName: "Result",
+                    routeValues: new
+                    {
+                        id = @result.id   
+                    },
+                    htmlAttributes : null
+                )
+            </td>
+            <td>@Html.ActionLink(
+                    linkText: "Voir l'évaluation",
+                    actionName: "Read",
+                    controllerName: "Evaluation",
+                    routeValues: new
+                    {
+                        id = @result.evaluationId
+                    },
+                    htmlAttributes: new
+                    {
+                        target = "_blank"
+                    }
+                )</td>
+            <td>
+                @Html.ActionLink(
+                    linkText: @result.pupilFirstName + " "+ @result.pupilLastName ,
+                    actionName: "Read",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @result.pupilId
+                    },
+                    htmlAttributes: new
+                    {
+                        target = "_blank"
+                    })
+            </td>
             <td>@result.note</td>
         </tr>
          }

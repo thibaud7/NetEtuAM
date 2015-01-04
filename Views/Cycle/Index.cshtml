@@ -4,23 +4,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ensemble des cycles</h2>
 
 <table>
     <thead>
         <tr>
-            <td>Id </td>
             <td>Titre </td>
         </tr>
     </thead>
     <tbody>
          @foreach (var cycle in Model) {
         <tr>
-            <td>@cycle.id</td>
-            <td>@cycle.title</td>
             <td>
                 @Html.ActionLink(
-                    linkText: "@cycle.title",
+                    linkText: @cycle.title,
                     actionName: "Read",
                     controllerName: "Cycle",
                     routeValues: new
@@ -32,16 +29,6 @@
                </td>
         </tr>
          }
-
-        @Html.ActionLink(
-                    linkText: "Exporter",
-                    actionName: "ExportToExcel",
-                    controllerName: "Tutor",
-                    routeValues: new
-                    {
-                    },
-                    htmlAttributes: null
-                ) 
     </tbody>
 </table>
 
