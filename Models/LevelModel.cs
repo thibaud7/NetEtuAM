@@ -10,6 +10,7 @@ namespace AuvrayMonmertNetEdu.Models
     {
         public LevelModel()
         {
+            this.pupils = new List<PupilModel>();
         }
     
         [DisplayName("Id du level")]
@@ -23,6 +24,9 @@ namespace AuvrayMonmertNetEdu.Models
 
         [DisplayName("Id du cycle lié")]
         public System.Guid idCycle { get; set; }
+
+        [DisplayName("Ensemble des élèces du level")]
+        public List<PupilModel> pupils { get; set; }
         
     }
 }
