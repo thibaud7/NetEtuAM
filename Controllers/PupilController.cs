@@ -179,7 +179,7 @@ namespace AuvrayMonmertNetEdu.Controllers
                 createPupilToPupilModel(o,sm);
                 repo.Save();
                 Pupil oo = repo.getById(sm.id).First();
-                return View("~/Views/Pupil/Read.cshtml", sm);
+                return RedirectToAction("Read", new { id = sm.id });
 
             }
         }
@@ -195,7 +195,7 @@ namespace AuvrayMonmertNetEdu.Controllers
                     id = s.Id,
                     evaluationId = s.Evaluation_Id,
                     note = s.Note,
-                    totalNote = s.Evaluation.TotalPoint
+                    totalNote = s.Evaluation.TotalPoint,
                 }).ToList();
 
 
@@ -228,7 +228,6 @@ namespace AuvrayMonmertNetEdu.Controllers
                 var repo = new PupilRepository(x);
                 List<PupilModel> pupils = repo.All().Select(s => new PupilModel
                 {
-                    id = s.Id,
                     lastName = s.LastName,
                     firstName = s.FirstName,
                     levelTitle = s.Level.Title,
@@ -242,7 +241,6 @@ namespace AuvrayMonmertNetEdu.Controllers
                 }).ToList();
 
                 var products = new System.Data.DataTable("Pupils");
-                products.Columns.Add("Id", typeof(Guid));
                 products.Columns.Add("Last Name", typeof(string));
                 products.Columns.Add("First Name", typeof(string));
                 products.Columns.Add("Level", typeof(string));
@@ -253,7 +251,6 @@ namespace AuvrayMonmertNetEdu.Controllers
                 foreach (PupilModel p in pupils)
                 {
                     products.Rows.Add(
-                        p.id,
                         p.lastName,
                         p.firstName,
                         p.levelTitle,

@@ -22,7 +22,7 @@ namespace AuvrayMonmertNetEdu.Models
         [RegularExpression("[A-Za-zàâçéèêëîïôûùüÿñæœ .-]+", ErrorMessage = "Nom invalide")]
         public string name { get; set; }
 
-        [DisplayName("Ensemble des établissements de l'Académie")]
+        //[DisplayName("Ensemble des établissements de l'Académie")]
         public List<EstablishmentModel> establishments;
     }
 }

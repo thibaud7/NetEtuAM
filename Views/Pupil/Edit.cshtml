@@ -1,6 +1,7 @@
 ﻿@model PupilModel
 @{
     ViewBag.Title = "Edit";
+    var date = Model.birthdayDate.ToString("yyyy-MM-dd");
 }
 
 <h2>Edit Pupil</h2>
@@ -22,7 +23,7 @@
 @Html.ValidationMessageFor(s => s.sex)
 
 @Html.LabelFor(s => s.birthdayDate)
-<input type="date" id="birthdayDate" name="birthdayDate" />
+<input type="date" id="birthdayDate" name="birthdayDate" value="@date" />
 
 
 @Html.Label("Tuteur")

@@ -62,7 +62,7 @@ Voici l'ensemble de ses résultats :
 {
     <tr><td>
     @Html.ActionLink(
-        linkText:  @eval.note.ToString() +"/"+ @eval.totalNote,
+        linkText:  @eval.note.ToString() + "/" +@eval.totalNote.ToString(),
         actionName: "Read",
         controllerName: "Result",
         routeValues: new

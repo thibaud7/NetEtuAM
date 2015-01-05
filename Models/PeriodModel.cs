@@ -20,7 +20,7 @@ namespace AuvrayMonmertNetEdu.Models
         public System.DateTime begin { get; set; }
 
         [DisplayName("Date de fin de la Période")]
-        public System.DateTime begin { get; set; }
+        public System.DateTime end { get; set; }
 
         [DisplayName("Année de la Période")]
         public int year { get; set; }

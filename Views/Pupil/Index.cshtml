@@ -4,7 +4,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ensemble des élèves</h2>
+
+@Html.ActionLink(
+                    linkText:  "Ajouter un élève",
+                    actionName: "Create",
+                    controllerName: "Pupil",
+                    routeValues: null,
+                    htmlAttributes : null
+                )
+
+@Html.ActionLink(
+                    linkText:  "Exporter sous format Excel",
+                    actionName: "ExportToExcel",
+                    controllerName: "Pupil",
+                    routeValues: null,
+                    htmlAttributes : null
+                )
+
+
 
 <table>
     <thead>

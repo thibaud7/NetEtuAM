@@ -23,8 +23,12 @@ namespace AuvrayMonmertNetEdu.Models
         [DisplayName("Note")]
         public double note { get; set; }
 
+        [DisplayName("TotalNote")]
+        public int totalNote { get; set; }
+
         [DisplayName("Id de l'élève lié au Résultat")]
         public Guid pupilId { get; set; }
+
 
     }
 }
