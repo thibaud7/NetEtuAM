@@ -23,6 +23,11 @@ namespace AuvrayMonmertNetEdu.Models
             return context.Pupils.Where(s => s.Classroom_Id == id);
         }
 
+        public IQueryable<Pupil> getByTutorId(Guid id)
+        {
+            return context.Pupils.Where(s => s.Tutor_Id == id);
+        }
+
         public IQueryable<Pupil> getById(Guid id)
         {
             return context.Pupils.Where(s => s.Id == id);

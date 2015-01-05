@@ -33,5 +33,6 @@ namespace AuvrayMonmertNetEdu.Models
         {
             return context.Tutors.Where(s => s.Id == id);
         }
+
     }
 }

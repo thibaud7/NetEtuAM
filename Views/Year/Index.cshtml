@@ -9,15 +9,22 @@
 <table>
     <thead>
         <tr>
-            <td>Id année </td>
             <td>Année </td>
         </tr>
     </thead>
     <tbody>
          @foreach (var year in Model) {
         <tr>
-            <td>@year.id</td>
-            <td>@year.year</td>
+            <td>@Html.ActionLink(
+                    linkText:  @year.year + "",
+                    actionName: "Read",
+                    controllerName: "Year",
+                    routeValues: new
+                    {
+                        id = @year.id   
+                    },
+                    htmlAttributes : null
+                )</td>
         </tr>
          }
     </tbody>

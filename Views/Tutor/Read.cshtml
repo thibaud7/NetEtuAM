@@ -4,19 +4,9 @@
     ViewBag.Title = "Read";
 }
 
-<h2>Read - Tutor</h2>
+<h2>Tuteur</h2>
 
-@Model.id
-@Model.lastName
-@Model.firstName
-@Model.address
-@Model.postCode
-@Model.town
-@Model.tel
-@Model.mail
-@Model.comment
-
-@Html.ActionLink(
+<h3>@Model.firstName @Model.lastName @Html.ActionLink(
                     linkText: "Editer",
                     actionName: "Edit",
                     controllerName: "Tutor",
@@ -25,6 +15,91 @@
                         id = @Model.id   
                     },
                     htmlAttributes: null
+                )</h3>
+
+@Html.LabelFor(s => s.address)
+@Model.address
+
+@Html.LabelFor(s => s.postCode)
+@Model.postCode
+
+@Html.LabelFor(s => s.town)
+@Model.town
+
+@Html.LabelFor(s => s.tel)
+@Model.tel
+
+@Html.LabelFor(s => s.mail)
+@Model.mail
+
+@Html.LabelFor(s => s.comment)
+@Model.comment
+
+
+<table>
+    <thead>
+        <tr>
+            <td>Prénom Nom </td>
+            <td>Sexe </td>
+            <td>Anniversaire</td>
+            <td>Etat</td>
+            <td>Classe</td>
+            <td>Niveau</td>
+            <td>Editer</td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var pupil in Model.pupils) {
+        <tr>
+            <td> @Html.ActionLink(
+                    linkText:  @pupil.firstName +" "+ @pupil.lastName,
+                    actionName: "Read",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id   
+                    },
+                    htmlAttributes : null
                 )
-
-
+            </td>
+            @if (pupil.sex == 1)
+            {
+                <td>M</td>
+            }
+            else
+            {
+                <td>F</td>
+            }
+            
+            <td>@pupil.birthdayDate.ToShortDateString()</td>
+            <td>@pupil.state</td>
+            <td>@Html.ActionLink(
+                    linkText: @pupil.classroomTitle,
+                    actionName: "Read",
+                    controllerName: "Classroom",
+                    routeValues: new
+                    {
+                        id = @pupil.classroomId  
+                    },
+                    htmlAttributes: new
+                    {
+                        target="_blank"
+                    }
+                )
+                </td>
+            <td>@pupil.levelTitle</td>
+            <td> @Html.ActionLink(
+                    linkText: "Editer",
+                    actionName: "Edit",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id
+                    },
+                    htmlAttributes: null
+                )
+            </td>
+        </tr>
+         }
+    </tbody>
+</table>

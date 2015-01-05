@@ -106,6 +106,22 @@ namespace AuvrayMonmertNetEdu.Controllers
         {
             using (var x = new Entities())
             {
+                var repoPupil = new PupilRepository(x);
+                List<PupilModel> l = repoPupil.getByTutorId(id).Select(s => new PupilModel
+                {
+                    id = s.Id,
+                    firstName = s.FirstName,
+                    lastName = s.LastName,
+                    sex = s.Sex,
+                    birthdayDate = s.BirthdayDate,
+                    state = s.State,
+                    tutorLastName = s.Tutor.LastName,
+                    classroomTitle = s.Classroom.Title,
+                    levelTitle = s.Level.Title,
+                    classroomId = s.Classroom_Id,
+                    tutorId = s.Tutor_Id
+                }).ToList();
+                
                 var repoTutor = new TutorRepository(x);
                 TutorModel tutor = repoTutor.getById(id).Select(s => new TutorModel
                 {
@@ -119,6 +135,8 @@ namespace AuvrayMonmertNetEdu.Controllers
                     mail = s.Mail,
                     comment = s.Comment
                 }).First();
+
+                tutor.pupils = l;
                 return View(tutor);
             }
 

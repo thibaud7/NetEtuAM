@@ -9,9 +9,7 @@
 <table>
     <thead>
         <tr>
-            <td>Id </td>
-            <td>Prénom </td>
-            <td>Nom </td>
+            <td>Prénom Nom</td>
             <td>Adresse </td>
             <td>Code Postal</td>
             <td>Ville</td>
@@ -24,9 +22,8 @@
     <tbody>
          @foreach (var tutor in Model) {
         <tr>
-            <td>@tutor.id</td>
             <td> @Html.ActionLink(
-                    linkText:  @tutor.firstName,
+                    linkText:  @tutor.firstName + " " + @tutor.lastName,
                     actionName: "Read",
                     controllerName: "Tutor",
                     routeValues: new
@@ -34,9 +31,8 @@
                         id = @tutor.id   
                     },
                     htmlAttributes : null
-                );
+                )
             </td>
-            <td>@tutor.lastName</td>
             <td>@tutor.address</td>
             <td>@tutor.postCode</td>
             <td>@tutor.town</td>
@@ -52,7 +48,7 @@
                         id = @tutor.id   
                     },
                     htmlAttributes : null
-                );
+                )
             </td>
         </tr>
          }

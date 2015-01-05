@@ -4,11 +4,11 @@
     ViewBag.Title = "Read";
 }
 
-<h2>Read</h2>
+<h2>@Model.year</h2>
 
-@Model.id
-@Model.year
 
+@Html.LabelFor(s => s.periods)
+<br />
 @foreach (var period in Model.periods)
 {
     @Html.ActionLink(
@@ -25,6 +25,10 @@
     );
 }
 
+<br />
+
+@Html.LabelFor(s => s.classrooms)
+<br />
 @foreach (var classroom in Model.classrooms)
 {
     @Html.ActionLink(
@@ -38,5 +42,5 @@
         htmlAttributes : new {
             target="_blank"
         }
-    );
+    ) 
 }
