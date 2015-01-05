@@ -94,8 +94,6 @@ namespace AuvrayMonmertNetEdu.Controllers
                     TutorRepository tr = new TutorRepository(x);
                     s.tutorLastName = tr.getById(s.tutorId).First().FirstName + " " + tr.getById(s.tutorId).First().LastName;
 
-                    
-
                     var repo = new PupilRepository(x);
                     Pupil p = createPupilToPupilModel(s);
                     repo.Add(p);

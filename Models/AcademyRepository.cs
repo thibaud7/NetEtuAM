@@ -28,5 +28,10 @@ namespace AuvrayMonmertNetEdu.Models
         {
             context.SaveChanges();
         }
+
+        public void Add(Academy a)
+        {
+            context.Academies.Add(a);
+        }
     }
 }

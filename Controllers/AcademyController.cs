@@ -66,26 +66,58 @@ namespace AuvrayMonmertNetEdu.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(AcademyModel sm)
+        public ActionResult Edit(AcademyModel am)
         {
             using (var x = new Entities())
             {
                 var repo = new AcademyRepository(x);
 
 
-                Academy o = repo.getById(sm.id).First();
-                o = createAcademyToAcademyModel(sm);
+                Academy o = repo.getById(am.id).First();
+                o = createAcademyToAcademyModel(am);
                 repo.Save();
-                return View("~/Views/Academy/Read.cshtml", sm);
+                return View("~/Views/Academy/Read.cshtml", am);
 
             }
         }
 
-        private Academy createAcademyToAcademyModel(AcademyModel sm)
+        [HttpGet]
+        public ActionResult Create()
+        {
+            using (var x = new Entities())
+            {
+                AcademyModel am = new AcademyModel();
+                return View(am);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Create(AcademyModel am)
+        {
+
+            am.id = Guid.NewGuid();
+            if (ModelState.IsValid)
+            {
+                using (var x = new Entities())
+                {
+                    var repo = new AcademyRepository(x);
+                    Academy a = createAcademyToAcademyModel(am);
+                    repo.Add(a);
+                    repo.Save();
+                    return View("~/Views/Academy/Read.cshtml", am);
+                }
+            }
+            else
+            {
+                return View(am);
+            }
+        }
+
+        private Academy createAcademyToAcademyModel(AcademyModel am)
         {
             Academy a = new Academy();
-            a.Id = sm.id;
-            a.Name = sm.name;
+            a.Id = am.id;
+            a.Name = am.name;
             return a;
         }
 

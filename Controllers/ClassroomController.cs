@@ -132,5 +132,35 @@ namespace AuvrayMonmertNetEdu.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new ClassroomRepository(x);
+                ClassroomModel c = repo.getById(id).Select(s => new ClassroomModel
+                {
+                    id = s.Id,
+                    title = s.Title
+                }).First();
+                return View(c);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ClassroomModel cm)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new ClassroomRepository(x);
+
+                Classroom o = repo.getById(cm.id).First();
+                o = createClassroomToClassroomModel(cm);
+                repo.Save();
+                return View("~/Views/Classroom/Read.cshtml", cm);
+
+            }
+        }
+
     }
 }

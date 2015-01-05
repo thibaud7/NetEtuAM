@@ -1,0 +1,17 @@
+﻿@model AcademyModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Créer une académie</h2>
+
+
+@{Html.BeginForm("Create", "Academy");}
+
+@Html.LabelFor(s => s.name)
+@Html.TextBoxFor(s => s.name)
+@Html.ValidationMessageFor(s => s.name)
+
+
+<input type="submit" value="Créer Académie"/>
+@{Html.EndForm();}
