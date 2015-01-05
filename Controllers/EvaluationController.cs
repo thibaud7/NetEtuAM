@@ -101,8 +101,6 @@ namespace AuvrayMonmertNetEdu.Controllers
                 }).ToList();
                 ViewData["users"] = l;
 
-                
-
                 return View(ss);
             }
         }
@@ -141,6 +139,81 @@ namespace AuvrayMonmertNetEdu.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            using (var x = new Entities())
+            {
+                ClassroomRepository prepo = new ClassroomRepository(x);
+                List<ClassroomModel> lp = prepo.All().Select(s => new ClassroomModel
+                {
+                    id = s.Id,
+                    title = s.Title
+                }).ToList();
+                ViewData["classes"] = lp;
+
+                PeriodRepository lrepo = new PeriodRepository(x);
+                List<PeriodModel> ll = lrepo.All().Select(s => new PeriodModel
+                {
+                    id = s.Id,
+                    begin = s.Begin,
+                    end = s.End
+                }).ToList();
+                ViewData["periods"] = ll;
+
+                UserRepository erepo = new UserRepository(x);
+                List<UserModel> l = erepo.All().Select(s => new UserModel
+                {
+                    id = s.Id,
+                    firstName = s.FirstName,
+                    lastName = s.LastName
+                }).ToList();
+                ViewData["users"] = l;
+
+                var repo = new EvaluationRepository(x);
+                EvaluationModel eval = repo.getById(id).Select(s => new EvaluationModel
+                {
+                    id = s.Id,
+                    periodBegin = s.Period.Begin,
+                    periodEnd = s.Period.End,
+                    classroomTitle = s.Classroom.Title,
+                    date = s.Date,
+                    userName = s.User.FirstName + " " + s.User.LastName,
+                    idClassroom = s.Classroom_Id,
+                    idPeriod = s.Period_Id,
+                    idUser = s.User_Id,
+                    totalPoint = s.TotalPoint,
+                }).First();
+
+                return View(eval);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EvaluationModel em)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new EvaluationRepository(x);
+                EvaluationModel eval = repo.getById(em.id).Select(s => new EvaluationModel
+                {
+                    classroomTitle = s.Classroom.Title,
+                    userName = s.User.UserName,
+                    periodBegin = s.Period.Begin,
+                    periodEnd = s.Period.End
+                }).First();
+
+                em.classroomTitle = eval.classroomTitle;
+                em.userName = eval.userName;
+                em.periodBegin = eval.periodBegin;
+                em.periodEnd = eval.periodEnd;
+                Evaluation e = repo.getById(em.id).First();
+                createEvaluationToEvaluationModel(e, em);
+                repo.Save();
+                return RedirectToAction("Read", new { id = em.id });
+            }
+        }
+
         public Evaluation createEvaluationToEvaluationModel(EvaluationModel s)
         {
             Evaluation e = new Evaluation();
@@ -151,6 +224,16 @@ namespace AuvrayMonmertNetEdu.Controllers
             e.Period_Id = s.idPeriod;
             e.Classroom_Id = s.idClassroom;
             return e;
+        }
+
+        public void createEvaluationToEvaluationModel(Evaluation e, EvaluationModel s)
+        {
+            e.Id = s.id;
+            e.Date = s.date;
+            e.TotalPoint = s.totalPoint;
+            e.User_Id = s.idUser;
+            e.Period_Id = s.idPeriod;
+            e.Classroom_Id = s.idClassroom;
         }
 
 
