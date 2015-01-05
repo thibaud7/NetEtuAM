@@ -5,6 +5,25 @@
 }
 
 <h2>Ensemble des classes</h2>
+
+<div>
+    @using (Ajax.BeginForm("Search", "Classroom",
+        new AjaxOptions
+        {
+            UpdateTargetId = "classrooms",
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+        }, new { @class = "form-group" }))
+    {
+        <div class="input-group">
+            <input type="text" name="recherche" class="form-control" placeholder="Recherche..."/>
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    }
+</div>
+<div id="classrooms">
 <p>@Html.ActionLink(
                 linkText: "Créer une classe",
                 actionName: "Create",
@@ -85,3 +104,4 @@
          }
     </tbody>
 </table>
+</div>

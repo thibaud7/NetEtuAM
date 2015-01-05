@@ -122,13 +122,13 @@ namespace AuvrayMonmertNetEdu.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(string requete)
+        public ActionResult Search(string recherche)
         {
             using (var x = new Entities())
             {
-                String[] results = requete.Split(new Char[] { ' ', ',' });
+                String[] mots = recherche.Split(new Char[] { ' ' });
                 AcademyRepository repo = new AcademyRepository(x);
-                List<AcademyModel> academies = repo.Search(results).Select(a => new AcademyModel
+                List<AcademyModel> academies = repo.Search(mots).Select(a => new AcademyModel
                 {
                     id = a.Id,
                     name = a.Name

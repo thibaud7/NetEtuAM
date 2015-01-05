@@ -6,6 +6,25 @@
 
 <h2>Ensemble des élèves</h2>
 
+<div>
+    @using (Ajax.BeginForm("Search", "Pupil",
+        new AjaxOptions
+        {
+            UpdateTargetId = "pupils",
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+        }, new { @class = "form-group" }))
+    {
+        <div class="input-group">
+            <input type="text" name="recherche" class="form-control" placeholder="Recherche..."/>
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    }
+</div>
+<div id="pupils">
+
 @Html.ActionLink(
                     linkText:  "Ajouter un élève",
                     actionName: "Create",
@@ -105,3 +124,4 @@
          }
     </tbody>
 </table>
+</div>

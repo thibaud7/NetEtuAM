@@ -298,7 +298,6 @@ namespace AuvrayMonmertNetEdu.Controllers
 
         public void createPupilToPupilModel(Pupil p, PupilModel m)
         {
-
             p.BirthdayDate = m.birthdayDate;
             p.Id = m.id;
             p.LastName = m.lastName;
@@ -308,6 +307,32 @@ namespace AuvrayMonmertNetEdu.Controllers
             p.FirstName = m.firstName;
             p.Tutor_Id = m.tutorId;
             p.Classroom_Id = m.classroomId;
+        }
+
+        [HttpPost]
+        public ActionResult Search(string recherche)
+        {
+            using (var x = new Entities())
+            {
+                String[] mots = recherche.Split(new Char[] { ' ' });
+                PupilRepository repo = new PupilRepository(x);
+                List<PupilModel> pupils = repo.Search(mots).Select(p => new PupilModel
+                {
+                    id = p.Id,
+                    lastName = p.LastName,
+                    firstName = p.FirstName,
+                    levelTitle = p.Level.Title,
+                    sex = p.Sex,
+                    birthdayDate = p.BirthdayDate,
+                    tutorLastName = p.Tutor.LastName,
+                    classroomTitle = p.Classroom.Title,
+                    levelId = p.Level_Id,
+                    tutorId = p.Tutor_Id,
+                    classroomId = p.Classroom_Id
+                }).ToList();
+
+                return View("~/Views/Pupil/Index.cshtml", pupils);
+            }
         }
     }
 }

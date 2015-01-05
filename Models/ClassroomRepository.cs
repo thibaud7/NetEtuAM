@@ -43,5 +43,15 @@ namespace AuvrayMonmertNetEdu.Models
             context.Classrooms.Add(s);
 
         }
+
+        public IQueryable<Classroom> Search(String[] mots)
+        {
+            IQueryable<Classroom> classroom = context.Classrooms;
+            if (mots[0] != "")
+            {
+                classroom = classroom.Where(c => mots.Contains(c.Title));
+            }
+            return classroom;
+        }
     }
 }

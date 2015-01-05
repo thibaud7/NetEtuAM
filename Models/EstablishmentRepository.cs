@@ -40,5 +40,15 @@ namespace AuvrayMonmertNetEdu.Models
         {
             context.SaveChanges();
         }
+
+        public IQueryable<Establishment> Search(String[] mots)
+        {
+            IQueryable<Establishment> establishment = context.Establishments;
+            if (mots[0] != "")
+            {
+                establishment = establishment.Where(e => mots.Contains(e.Name));
+            }
+            return establishment;
+        }
     }
 }

@@ -43,7 +43,16 @@ namespace AuvrayMonmertNetEdu.Models
             context.Pupils.Add(s);
         }
 
-      
+        public IQueryable<Pupil> Search(String[] mots)
+        {
+            IQueryable<Pupil> pupil = context.Pupils;
+            if (mots[0] != "")
+            {
+                pupil = pupil.Where(p => mots.Contains(p.FirstName)
+                                    || mots.Contains(p.LastName));
+            }
+            return pupil;
+        }
 
     }
 }
