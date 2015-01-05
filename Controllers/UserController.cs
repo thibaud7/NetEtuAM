@@ -29,5 +29,23 @@ namespace AuvrayMonmertNetEdu.Controllers
             }
         }
 
+        public ActionResult Read(Guid id)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new UserRepository(x);
+                UserModel um = repo.All().Select(s => new UserModel
+                {
+                    id = s.Id,
+                    firstName = s.FirstName,
+                    lastName = s.LastName,
+                    userName = s.UserName,
+                    mail = s.Mail,
+                }).First();
+                return View(um);
+            }
+
+        }
+
     }
 }

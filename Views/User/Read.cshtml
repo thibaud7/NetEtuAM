@@ -1,0 +1,28 @@
+﻿@model UserModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Read</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Id </td>
+            <td>Prénom </td>
+            <td>Nom </td>
+            <td>UserName</td>
+            <td>Email</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.id</td>
+            <td>@Model.firstName</td>
+            <td>@Model.lastName</td>
+            <td>@Model.userName</td>
+            <td>@Model.mail</td>
+        </tr>
+    </tbody>
+</table>
