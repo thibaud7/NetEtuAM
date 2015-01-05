@@ -33,5 +33,15 @@ namespace AuvrayMonmertNetEdu.Models
         {
             context.Academies.Add(a);
         }
+
+        public IQueryable<Academy> Search(String[] champs)
+        {
+            IQueryable<Academy> academies = context.Academies;
+            if (champs[0] != "")
+            {
+                academies = academies.Where(a => champs.Contains(a.Name));
+            }
+            return academies;
+        }
     }
 }

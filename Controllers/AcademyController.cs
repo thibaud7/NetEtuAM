@@ -121,5 +121,22 @@ namespace AuvrayMonmertNetEdu.Controllers
             return a;
         }
 
+        [HttpPost]
+        public ActionResult Search(string requete)
+        {
+            using (var x = new Entities())
+            {
+                String[] results = requete.Split(new Char[] { ' ', ',' });
+                AcademyRepository repo = new AcademyRepository(x);
+                List<AcademyModel> academies = repo.Search(results).Select(a => new AcademyModel
+                {
+                    id = a.Id,
+                    name = a.Name
+                }).ToList();
+
+                return View("~/Views/Academy/Index.cshtml", academies);
+            }
+        }
+
     }
 }

@@ -6,7 +6,26 @@
 
 <h2>Ensemble des académies</h2>
 
-<table>
+
+<div id="search">
+    @using (Ajax.BeginForm("Search", "Academy",
+        new AjaxOptions
+        {
+            UpdateTargetId = "AcademiesArray",
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+        }, new { @class = "form-group" }))
+    {
+        <div class="input-group">
+            <input type="text" name="requete" class="form-control" placeholder="Search..."/>
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    }
+</div>
+<div id="AcademiesArray">
+    <table>
     <thead>
         <tr>
             <td>Nom </td>
@@ -44,3 +63,4 @@
          }
     </tbody>
 </table>
+</div>
