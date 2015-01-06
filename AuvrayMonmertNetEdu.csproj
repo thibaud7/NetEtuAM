@@ -421,6 +421,9 @@
     <Content Include="Views\Academy\Edit.cshtml" />
     <Content Include="Views\Establishment\Edit.cshtml" />
     <Content Include="Views\Establishment\Create.cshtml" />
+    <Content Include="Views\Classroom\Edit.cshtml" />
+    <Content Include="Views\Academy\Create.cshtml" />
+    <Content Include="Views\User\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

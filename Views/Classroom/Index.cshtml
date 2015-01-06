@@ -19,6 +19,7 @@
             <td>Année </td>
             <td>Etablissement </td>
             <td>Utilisateur</td>
+            <td>Edition</td>
         </tr>
     </thead>
     <tbody>
@@ -81,6 +82,18 @@
                     target = "_blank"
                 }
             )</td>
+            <td>
+                @Html.ActionLink(
+                linkText: "Editer",
+                actionName: "Edit",
+                controllerName: "Classroom",
+                routeValues: new
+                {
+                    id = @classroom.id
+                },
+                htmlAttributes: null
+            )
+            </td>
         </tr>
          }
     </tbody>

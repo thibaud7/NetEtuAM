@@ -11,46 +11,170 @@
     <p>Nom de l'utilisateur : @Model.userName</p>
 
     Liste des evaluations
-    <table>
+<table>
+    <thead>
+        <tr>
+            <td>Voir</td>
+            <td>Classe </td>
+            <td>Utilisateur </td>
+            <td>Debut periode </td>
+            <td>Fin periode </td>
+            <td>Date </td>
+            <td>Points </td>
+            <td>Ajouter</td>
+        </tr>
+    </thead>
     <tbody>
-        <tr>    
-@foreach (var eval in Model.evaluations)
-{
-    <td>
-    @Html.ActionLink(
-        linkText:  @eval.date.ToShortDateString(),
-        actionName: "Read",
-        controllerName: "Evaluation",
-        routeValues: new
-        {
-            id = @eval.id   
-        },
-        htmlAttributes : new {
-            target="_blank"
-        }
-    )
-    
-        </td>
-}
-      </tr></tbody></table>
+         @foreach (var evaluation in Model.evaluations)
+         {
+        <tr>
+            <td>
+                @Html.ActionLink(
+                linkText: "Voir",
+                actionName: "Read",
+                controllerName: "Evaluation",
+                routeValues: new
+                {
+                id = @evaluation.id
+                },
+                htmlAttributes: null
+                )
+            </td>
+            <td>
+                @Html.ActionLink(
+                linkText: @evaluation.classroomTitle,
+                actionName: "Read",
+                controllerName: "Classroom",
+                routeValues: new
+                {
+                id = @evaluation.idClassroom
+                },
+                htmlAttributes: new
+                {
+                target = "_blank",
+                }
+                )
+            </td>
+            <td>@Html.ActionLink(
+                linkText: @evaluation.userName,
+                actionName: "Read",
+                controllerName: "User",
+                routeValues: new
+                {
+                id = @evaluation.idUser
+                },
+                htmlAttributes: new
+                {
+                target = "_blank",
+                }
+                )</td>
+            <td>@evaluation.periodBegin</td>
+            <td>@evaluation.periodEnd</td>
+            <td>@evaluation.date</td>
+            <td>@evaluation.totalPoint</td>
+            <td>@Html.ActionLink(
+                linkText: "Ajouter des résultats",
+                actionName: "AddResults",
+                controllerName: "Evaluation",
+                routeValues: new
+                {
+                id = @evaluation.id
+                },
+                htmlAttributes: new
+                {
+                target = "_blank",
+                }
+                )
+            </td>
+        </tr>
+         }
+    </tbody>
+</table>
+
+<br />
 
 Liste des élèves :
-<table>
-    <tr> 
-@foreach (var pupil in Model.pupils)
-{
-    @Html.ActionLink(
-        linkText:  @pupil.firstName + " " + @pupil.lastName,
-        actionName: "Read",
-        controllerName: "Pupil",
-        routeValues: new
-        {
-            id = @pupil.id   
-        },
-        htmlAttributes : new {
-            target="_blank"
-        }
-    );
-}
+<br />
 
-</tr></table>
+<table>
+    <thead>
+        <tr>
+            <td>Prénom Nom </td>
+            <td>Sexe </td>
+            <td>Anniversaire</td>
+            <td>Etat</td>
+            <td>Tuteur</td>
+            <td>Classe</td>
+            <td>Niveau</td>
+            <td>Editer</td>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var pupil in Model.pupils)
+         {
+        <tr>
+            <td> @Html.ActionLink(
+                    linkText:  @pupil.firstName +" "+ @pupil.lastName,
+                    actionName: "Read",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id   
+                    },
+                    htmlAttributes : null
+                )
+            </td>
+            @if (pupil.sex == 1)
+            {
+                <td>M</td>
+            }
+            else
+            {
+                <td>F</td>
+            }
+            
+            <td>@pupil.birthdayDate.ToShortDateString()</td>
+            <td>@pupil.state</td>
+            <td>@Html.ActionLink(
+                    linkText: @pupil.tutorLastName,
+                    actionName: "Read",
+                    controllerName: "Tutor",
+                    routeValues: new
+                    {
+                        id = @pupil.tutorId   
+                    },
+                    htmlAttributes: new
+                    {
+                        target="_blank"
+                    }
+                )</td>
+            <td>@Html.ActionLink(
+                    linkText: @pupil.classroomTitle,
+                    actionName: "Read",
+                    controllerName: "Classroom",
+                    routeValues: new
+                    {
+                        id = @pupil.classroomId  
+                    },
+                    htmlAttributes: new
+                    {
+                        target="_blank"
+                    }
+                )
+                </td>
+            <td>@pupil.levelTitle</td>
+            <td> @Html.ActionLink(
+                    linkText: "Editer",
+                    actionName: "Edit",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id
+                    },
+                    htmlAttributes: null
+                )
+            </td>
+        </tr>
+         }
+    </tbody>
+</table>

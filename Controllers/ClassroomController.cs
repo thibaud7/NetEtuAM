@@ -99,7 +99,14 @@ namespace AuvrayMonmertNetEdu.Controllers
                 List<EvaluationModel> listEvaluations = repoEvaluation.getByClassroomId(id).Select(s => new EvaluationModel
                 {
                     id = s.Id,
-                    date = s.Date
+                    classroomTitle = s.Classroom.Title,
+                    userName = s.User.UserName,
+                    periodBegin = s.Period.Begin,
+                    periodEnd = s.Period.End,
+                    date = s.Date,
+                    totalPoint = s.TotalPoint,
+                    idUser = s.User_Id,
+                    idClassroom = s.Classroom_Id
                 }).ToList();
 
 
@@ -108,7 +115,15 @@ namespace AuvrayMonmertNetEdu.Controllers
                 {
                     id = s.Id,
                     firstName = s.FirstName,
-                    lastName = s.LastName
+                    lastName = s.LastName,
+                    sex = s.Sex,
+                    birthdayDate = s.BirthdayDate,
+                    state = s.State,
+                    tutorLastName = s.Tutor.LastName,
+                    classroomTitle = s.Classroom.Title,
+                    levelTitle = s.Level.Title,
+                    classroomId = s.Classroom_Id,
+                    tutorId = s.Tutor_Id
                 }).ToList();
 
 
@@ -141,8 +156,30 @@ namespace AuvrayMonmertNetEdu.Controllers
                 ClassroomModel c = repo.getById(id).Select(s => new ClassroomModel
                 {
                     id = s.Id,
-                    title = s.Title
+                    title = s.Title,
+                    establishmentName = s.Establishment.Name,
+                    establishmentId = s.Establishment_Id,
+                    userId = s.User_Id,
+                    year = s.Year.Year1,
+                    yearId = s.Year_Id
+                    
                 }).First();
+
+                EstablishmentRepository erepo = new EstablishmentRepository(x);
+                List<EstablishmentModel> l = erepo.All().Select(s => new EstablishmentModel
+                {
+                    id = s.Id,
+                    name = s.Name
+                }).ToList();
+                ViewData["etablissements"] = l;
+
+                YearRepository prepo = new YearRepository(x);
+                List<YearModel> lp = prepo.All().Select(s => new YearModel
+                {
+                    id = s.Id,
+                    year = s.Year1
+                }).ToList();
+                ViewData["annees"] = lp;
                 return View(c);
             }
         }
@@ -153,13 +190,23 @@ namespace AuvrayMonmertNetEdu.Controllers
             using (var x = new Entities())
             {
                 var repo = new ClassroomRepository(x);
-
+                EstablishmentRepository er = new EstablishmentRepository(x);
+                cm.userId = er.getById(cm.establishmentId).First().User_Id;
                 Classroom o = repo.getById(cm.id).First();
-                o = createClassroomToClassroomModel(cm);
+                createClassroomToClassroomModel(o,cm);
                 repo.Save();
-                return View("~/Views/Classroom/Read.cshtml", cm);
+                return RedirectToAction("Read", new { id = cm.id });
 
             }
+        }
+
+        public void createClassroomToClassroomModel(Classroom c, ClassroomModel m)
+        {
+            c.Establishment_Id = m.establishmentId;
+            c.Id = m.id;
+            c.Title = m.title;
+            c.User_Id = m.userId;
+            c.Year_Id = m.yearId;
         }
 
     }
