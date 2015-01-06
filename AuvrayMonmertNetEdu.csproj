@@ -426,6 +426,7 @@
     <Content Include="Views\Level\Read.cshtml" />
     <Content Include="Views\Result\Read.cshtml" />
     <Content Include="Views\Evaluation\Edit.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

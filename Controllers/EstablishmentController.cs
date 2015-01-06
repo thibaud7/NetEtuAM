@@ -188,7 +188,7 @@ namespace AuvrayMonmertNetEdu.Controllers
                     Establishment p = repo.getById(s.id).First();
                     convertEstablishmentToEstablishmentModel(s,p);
                     repo.Save();
-                    return View("~/Views/Establishment/Read.cshtml",s);
+                    return RedirectToAction("Read", new {id = s.id});
                 }
             }
             else

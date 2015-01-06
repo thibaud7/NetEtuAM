@@ -74,11 +74,17 @@ namespace AuvrayMonmertNetEdu.Controllers
 
 
                 Academy o = repo.getById(am.id).First();
-                o = createAcademyToAcademyModel(am);
+                createAcademyToAcademyModel(o,am);
                 repo.Save();
-                return View("~/Views/Academy/Read.cshtml", am);
+                return RedirectToAction("Read", new {id = am.id});
 
             }
+        }
+
+        private void createAcademyToAcademyModel(Academy a, AcademyModel am)
+        {
+            a.Id = am.id;
+            a.Name = am.name;
         }
 
         [HttpGet]

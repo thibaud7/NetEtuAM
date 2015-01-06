@@ -94,11 +94,24 @@ namespace AuvrayMonmertNetEdu.Controllers
             {
                 TutorRepository repo = new TutorRepository(x);
                 Tutor s = repo.getById(sm.id).First();
-                s = createTutorToTutorModel(sm);
+                createTutorToTutorModel(s,sm);
                 repo.Save();
-                return View("~/Views/Tutor/Read.cshtml", sm);
+                return RedirectToAction("Read", new { id = sm.id });
 
             }
+        }
+
+        private void createTutorToTutorModel(Tutor p, TutorModel m)
+        {
+            p.Address = m.address;
+            p.Comment = m.comment;
+            p.FirstName = m.firstName;
+            p.LastName = m.lastName;
+            p.Mail = m.mail;
+            p.PostCode = m.postCode;
+            p.Tel = m.tel;
+            p.Town = m.town;
+            p.Id = m.id;
         }
 
         [HttpGet]
