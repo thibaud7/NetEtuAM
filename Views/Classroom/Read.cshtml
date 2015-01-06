@@ -6,51 +6,56 @@
 
 <h2>Classe</h2>
 
-    <p>Nom de la classe : @Model.title</p>
-    <p>Nom de l'etablissement : @Model.establishmentName</p>
-    <p>Nom de l'utilisateur : @Model.userName</p>
+<p>@Html.LabelFor(s => s.title) : @Model.title</p>
+<p>@Html.LabelFor(s => s.establishmentName) : @Model.establishmentName</p>
+<p>@Html.LabelFor(s => s.userName)  : @Model.userName</p>
 
-    Liste des evaluations
-    <table>
+@Html.LabelFor(s => s.evaluations)
+<table>
     <tbody>
         <tr>    
-@foreach (var eval in Model.evaluations)
-{
-    <td>
-    @Html.ActionLink(
-        linkText:  @eval.date.ToShortDateString(),
-        actionName: "Read",
-        controllerName: "Evaluation",
-        routeValues: new
+        @foreach (var eval in Model.evaluations)
         {
-            id = @eval.id   
-        },
-        htmlAttributes : new {
-            target="_blank"
+            <td>
+                @Html.ActionLink(
+                    linkText:  @eval.date.ToShortDateString(),
+                    actionName: "Read",
+                    controllerName: "Evaluation",
+                    routeValues: new
+                    {
+                        id = @eval.id   
+                    },
+                    htmlAttributes : new {
+                        target="_blank"
+                    }
+                )    
+            </td>
         }
-    )
-    
-        </td>
-}
-      </tr></tbody></table>
+        </tr>
+    </tbody>
+</table>
 
-Liste des élèves :
+@Html.LabelFor(s => s.pupils)
 <table>
-    <tr> 
-@foreach (var pupil in Model.pupils)
-{
-    @Html.ActionLink(
-        linkText:  @pupil.firstName + " " + @pupil.lastName,
-        actionName: "Read",
-        controllerName: "Pupil",
-        routeValues: new
+    <tbody>
+        <tr> 
+        @foreach (var pupil in Model.pupils)
         {
-            id = @pupil.id   
-        },
-        htmlAttributes : new {
-            target="_blank"
+            <td>
+                @Html.ActionLink(
+                    linkText:  @pupil.firstName + " " + @pupil.lastName,
+                    actionName: "Read",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id   
+                    },
+                    htmlAttributes : new {
+                        target="_blank"
+                    }
+                );
+            </td>
         }
-    );
-}
-
-</tr></table>
+        </tr>
+    </tbody>
+</table>
