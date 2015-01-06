@@ -6,6 +6,25 @@
 
 <h2>Ensemble des établissements</h2>
 
+<div>
+    @using (Ajax.BeginForm("Search", "Establishment",
+        new AjaxOptions
+        {
+            UpdateTargetId = "establishments",
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+        }, new { @class = "form-group" }))
+    {
+        <div class="input-group">
+            <input type="text" name="recherche" class="form-control" placeholder="Recherche..."/>
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    }
+</div>
+<div id="establishments">
+
  @Html.ActionLink(
                     linkText:  "Ajouter un établissement",
                     actionName: "Create",
@@ -87,3 +106,4 @@
          }
     </tbody>
 </table>
+</div>

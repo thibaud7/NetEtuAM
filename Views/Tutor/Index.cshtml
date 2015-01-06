@@ -4,7 +4,26 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ensembles des tuteurs</h2>
+
+<div>
+    @using (Ajax.BeginForm("Search", "Tutor",
+        new AjaxOptions
+        {
+            UpdateTargetId = "tutors",
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+        }, new { @class = "form-group" }))
+    {
+        <div class="input-group">
+            <input type="text" name="recherche" class="form-control" placeholder="Recherche..."/>
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    }
+</div>
+<div id="tutors">
 
 <table>
     <thead>
@@ -54,3 +73,4 @@
          }
     </tbody>
 </table>
+</div>

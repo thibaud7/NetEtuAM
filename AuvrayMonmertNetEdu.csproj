@@ -406,7 +406,6 @@
     <Content Include="Views\Academy\Read.cshtml" />
     <Content Include="Views\Establishment\Read.cshtml" />
     <Content Include="Views\Classroom\Create.cshtml" />
-    <Content Include="Views\Year\Create.cshtml" />
     <Content Include="Views\Classroom\Read.cshtml" />
     <Content Include="Views\Pupil\Create.cshtml" />
     <Content Include="Views\Pupil\Read.cshtml" />
@@ -424,6 +423,10 @@
     <Content Include="Views\Classroom\Edit.cshtml" />
     <Content Include="Views\Academy\Create.cshtml" />
     <Content Include="Views\User\Read.cshtml" />
+    <Content Include="Views\Level\Read.cshtml" />
+    <Content Include="Views\Result\Read.cshtml" />
+    <Content Include="Views\Evaluation\Edit.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

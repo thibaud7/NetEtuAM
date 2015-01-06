@@ -129,7 +129,6 @@ namespace AuvrayMonmertNetEdu.Controllers
                     address = s.Address,
                     academyId = s.Academie_Id,
                     userId = s.User_Id
-                    
                 }).First();
                 establishment.classrooms = classrooms;
                 return View(establishment);
@@ -195,6 +194,30 @@ namespace AuvrayMonmertNetEdu.Controllers
             else
             {
                 return View(s);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Search(string recherche)
+        {
+            using (var x = new Entities())
+            {
+                String[] mots = recherche.Split(new Char[] { ' ' });
+                EstablishmentRepository repo = new EstablishmentRepository(x);
+                List<EstablishmentModel> establishments = repo.Search(mots).Select(e => new EstablishmentModel
+                {
+                    id = e.Id,
+                    name = e.Name,
+                    postCode = e.PostCode,
+                    town = e.Town,
+                    userName = e.User.UserName,
+                    academyName = e.Academy.Name,
+                    address = e.Address,
+                    academyId = e.Academie_Id,
+                    userId = e.User_Id
+                }).ToList();
+
+                return View("~/Views/Establishment/Index.cshtml", establishments);
             }
         }
     }

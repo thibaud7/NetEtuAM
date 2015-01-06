@@ -29,6 +29,11 @@ namespace AuvrayMonmertNetEdu.Models
             return context.Results.Where(s => s.Evaluation_Id == id);
         }
 
+        public IQueryable<Result> getById(Guid id)
+        {
+            return context.Results.Where(s => s.Id == id);
+        }
+
         public void Save()
         {
             context.SaveChanges();

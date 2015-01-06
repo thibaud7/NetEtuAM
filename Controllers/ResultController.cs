@@ -30,5 +30,25 @@ namespace AuvrayMonmertNetEdu.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Read(Guid id)
+        {
+            using (var x = new Entities())
+            {
+                var repo = new ResultRepository(x);
+                ResultModel result = repo.getById(id).Select(s => new ResultModel
+                {
+                    id = s.Id,
+                    evaluationId = s.Evaluation_Id,
+                    pupilFirstName = s.Pupil.FirstName,
+                    pupilLastName = s.Pupil.LastName,
+                    note = s.Note,
+                    pupilId = s.Pupil_Id
+                }).First();
+                return View(result);
+               
+            }
+        }
+
     }
 }

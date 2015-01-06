@@ -34,12 +34,12 @@ namespace AuvrayMonmertNetEdu.Models
             context.Academies.Add(a);
         }
 
-        public IQueryable<Academy> Search(String[] champs)
+        public IQueryable<Academy> Search(String[] mots)
         {
             IQueryable<Academy> academies = context.Academies;
-            if (champs[0] != "")
+            if (mots[0] != "")
             {
-                academies = academies.Where(a => champs.Contains(a.Name));
+                academies = academies.Where(a => mots.Contains(a.Name));
             }
             return academies;
         }

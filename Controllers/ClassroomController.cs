@@ -200,6 +200,7 @@ namespace AuvrayMonmertNetEdu.Controllers
             }
         }
 
+
         public void createClassroomToClassroomModel(Classroom c, ClassroomModel m)
         {
             c.Establishment_Id = m.establishmentId;
@@ -209,5 +210,28 @@ namespace AuvrayMonmertNetEdu.Controllers
             c.Year_Id = m.yearId;
         }
 
+
+        [HttpPost]
+        public ActionResult Search(string recherche)
+        {
+            using (var x = new Entities())
+            {
+                String[] mots = recherche.Split(new Char[] { ' ' });
+                ClassroomRepository repo = new ClassroomRepository(x);
+                List<ClassroomModel> classrooms = repo.Search(mots).Select(c => new ClassroomModel
+                {
+                    id = c.Id,
+                    title = c.Title,
+                    userName = c.User.FirstName + " " + c.User.LastName,
+                    year = c.Year.Year1,
+                    yearId = c.Year_Id,
+                    userId = c.User_Id,
+                    establishmentId = c.Establishment_Id,
+                    establishmentName = c.Establishment.Name
+                }).ToList();
+
+                return View("~/Views/Classroom/Index.cshtml", classrooms);
+            }
+        }
     }
 }

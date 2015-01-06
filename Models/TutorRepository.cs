@@ -34,5 +34,16 @@ namespace AuvrayMonmertNetEdu.Models
             return context.Tutors.Where(s => s.Id == id);
         }
 
+        public IQueryable<Tutor> Search(String[] mots)
+        {
+            IQueryable<Tutor> tutor = context.Tutors;
+            if (mots[0] != "")
+            {
+                tutor = tutor.Where(t => mots.Contains(t.FirstName)
+                                    || mots.Contains(t.LastName));
+            }
+            return tutor;
+        }
+
     }
 }

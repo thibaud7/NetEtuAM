@@ -29,6 +29,38 @@ namespace AuvrayMonmertNetEdu.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult Read(Guid id)
+        {
+            using (var x = new Entities())
+            {
+                var repoLevel = new PupilRepository(x);
+                List<PupilModel> listPupils = repoLevel.getByLevelId(id).Select(s => new PupilModel
+                {
+                    id = s.Id,
+                    firstName = s.FirstName,
+                    lastName = s.LastName,
+                    sex = s.Sex,
+                    birthdayDate = s.BirthdayDate,
+                    state = s.State,
+                    tutorLastName = s.Tutor.LastName,
+                    classroomTitle = s.Classroom.Title,
+                    levelTitle = s.Level.Title,
+                    classroomId = s.Classroom_Id,
+                    tutorId = s.Tutor_Id
+                }).ToList();
+                var repo = new LevelRepository(x);
+                LevelModel level = repo.getById(id).Select(s => new LevelModel
+                {
+                    id = s.Id,
+                    title = s.Title,
+                }).First();
+                level.pupils = listPupils;
+                return View(level);
+            }
+
+        }
+
 
     }
 }

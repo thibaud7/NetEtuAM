@@ -220,5 +220,29 @@ namespace AuvrayMonmertNetEdu.Controllers
             return p;
         }
 
+        [HttpPost]
+        public ActionResult Search(string recherche)
+        {
+            using (var x = new Entities())
+            {
+                String[] mots = recherche.Split(new Char[] { ' ' });
+                TutorRepository repo = new TutorRepository(x);
+                List<TutorModel> tutors = repo.Search(mots).Select(t => new TutorModel
+                {
+                    id = t.Id,
+                    address = t.Address,
+                    firstName = t.FirstName,
+                    lastName = t.LastName,
+                    postCode = t.PostCode,
+                    tel = t.Tel,
+                    town = t.Town,
+                    mail = t.Mail,
+                    comment = t.Comment
+                }).ToList();
+
+                return View("~/Views/Tutor/Index.cshtml", tutors);
+            }
+        }
+
     }
 }

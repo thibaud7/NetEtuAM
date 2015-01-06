@@ -1,0 +1,71 @@
+﻿@model LevelModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Différents niveaux scolaires associés à leurs cycles</h2>
+<h3>@Model.title</h3>
+<table>
+    <thead>
+        <tr>
+            <td>Titre </td>
+            <td>Cycle </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pupil in Model.pupils) {
+        <tr>
+            <td> @Html.ActionLink(
+                    linkText:  @pupil.firstName +" "+ @pupil.lastName,
+                    actionName: "Read",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id   
+                    },
+                    htmlAttributes : null
+                )
+            </td>
+            @if (pupil.sex == 1)
+            {
+                <td>M</td>
+            }
+            else
+            {
+                <td>F</td>
+            }
+            
+            <td>@pupil.birthdayDate.ToShortDateString()</td>
+            <td>@pupil.state</td>
+            <td>@Html.ActionLink(
+                    linkText: @pupil.classroomTitle,
+                    actionName: "Read",
+                    controllerName: "Classroom",
+                    routeValues: new
+                    {
+                        id = @pupil.classroomId  
+                    },
+                    htmlAttributes: new
+                    {
+                        target="_blank"
+                    }
+                )
+                </td>
+            <td>@pupil.levelTitle</td>
+            <td> @Html.ActionLink(
+                    linkText: "Editer",
+                    actionName: "Edit",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        id = @pupil.id
+                    },
+                    htmlAttributes: null
+                )
+            </td>
+        </tr>
+         }
+    </tbody>
+</table>
+
