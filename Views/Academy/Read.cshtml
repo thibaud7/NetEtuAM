@@ -14,7 +14,21 @@
         <tr>
             <td>@Html.LabelFor(s => s.establishments[0].town)</td>
             <td>@Html.LabelFor(s => s.establishments[0].name)</td>
-
+            <td>
+                @Html.ActionLink(
+                    linkText: "Créer un nouvel établissement",
+                    actionName: "Create",
+                    controllerName: "Establishment",
+                    routeValues: new
+                    {
+                        academyId = Model.id
+                    },
+                    htmlAttributes: new
+                    {
+                        target = "_blank",
+                    }
+                )
+            </td>
         </tr>
         }
     </thead>

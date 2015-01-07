@@ -11,6 +11,21 @@
         <tr>
             <td>Titre </td>
             <td>Cycle </td>
+            <td>
+                 @Html.ActionLink(
+                    linkText: "Créer un nouvel élève",
+                    actionName: "Create",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        levelId = Model.id 
+                    },
+                    htmlAttributes: new
+                    {
+                        target = "_blank",
+                    }
+                )
+            </td>
         </tr>
     </thead>
     <tbody>

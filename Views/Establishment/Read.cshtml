@@ -28,6 +28,19 @@
 </tr>
 </table>
 <br />
+@Html.ActionLink(
+    linkText: "Créer une nouvelle classe",
+    actionName: "Create",
+    controllerName: "Classroom",
+    routeValues: new
+    {
+        establishmentId = Model.id
+    },
+    htmlAttributes: new
+    {
+        target = "_blank",
+    }
+)
 Ensemble des classes : <br />
 @foreach (var x in Model.classrooms) 
 {

@@ -31,11 +31,20 @@ namespace AuvrayMonmertNetEdu.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(Guid? yearId, Guid? establishmentId)
         {
             using (var x = new Entities())
             {
-                ClassroomModel ss = new ClassroomModel();
+                ClassroomModel cm = new ClassroomModel();
+                if (yearId.HasValue)
+                {
+                    cm.yearId = (Guid) yearId;
+                }
+                if (establishmentId.HasValue)
+                {
+                    cm.establishmentId = (Guid) establishmentId;
+                }
+
                 EstablishmentRepository erepo = new EstablishmentRepository(x);
                 List<EstablishmentModel> l = erepo.All().Select(s => new EstablishmentModel
                 {
@@ -51,7 +60,7 @@ namespace AuvrayMonmertNetEdu.Controllers
                     year = s.Year1
                 }).ToList();
                 ViewData["annees"] = lp;
-                return View(ss);
+                return View(cm);
             }
         }
 
