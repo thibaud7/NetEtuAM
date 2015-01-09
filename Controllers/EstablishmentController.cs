@@ -36,11 +36,17 @@ namespace AuvrayMonmertNetEdu.Controllers
 
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(Guid? academyId)
         {
             using (var x = new Entities())
             {
-                EstablishmentModel ss= new EstablishmentModel();
+                EstablishmentModel em = new EstablishmentModel();
+
+                if (academyId.HasValue)
+                {
+                    em.academyId = (Guid) academyId;
+                }
+
                 UserRepository erepo = new UserRepository(x);
                 List<UserModel> l = erepo.All().Select(s => new UserModel
                 {
@@ -56,7 +62,7 @@ namespace AuvrayMonmertNetEdu.Controllers
                     name = s.Name
                 }).ToList();
                 ViewData["academies"] = lp;
-                return View(ss);
+                return View(em);
             }
         }
 

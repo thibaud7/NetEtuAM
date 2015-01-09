@@ -29,6 +29,19 @@
 
 @Html.LabelFor(s => s.classrooms)
 <br />
+@Html.ActionLink(
+    linkText: "Créer une nouvelle classe",
+    actionName: "Create",
+    controllerName: "Classroom",
+    routeValues: new
+    {
+        yearId = Model.id
+    },
+    htmlAttributes: new
+    {
+        target = "_blank",
+    }
+)
 @foreach (var classroom in Model.classrooms)
 {
     @Html.ActionLink(

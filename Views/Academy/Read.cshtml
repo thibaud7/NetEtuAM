@@ -9,36 +9,49 @@
 
 <table>
     <thead>
+        @if (Model.establishments.Count != 0)
+        {
         <tr>
-            <td>Ville </td>
-            <td>Etablissement </td>
-
+            <td>@Html.LabelFor(s => s.establishments[0].town)</td>
+            <td>@Html.LabelFor(s => s.establishments[0].name)</td>
+            <td>
+                @Html.ActionLink(
+                    linkText: "Créer un nouvel établissement",
+                    actionName: "Create",
+                    controllerName: "Establishment",
+                    routeValues: new
+                    {
+                        academyId = Model.id
+                    },
+                    htmlAttributes: new
+                    {
+                        target = "_blank",
+                    }
+                )
+            </td>
         </tr>
+        }
     </thead>
-        <tbody>
-@foreach (var x in Model.establishments) 
-{
-    <tr>
-    <td>
-    @x.town
-    </td>
-
-    <td>
-            @Html.ActionLink(
-                linkText: @x.name,
-                actionName: "Read",
-                controllerName: "Establishment",
-                routeValues: new
-                {
-                    id = @x.id
-                },
-                htmlAttributes: new
-                {
-                    target = "_blank"
-                }
-            )        
-    </td>
-    </tr>
-    
-}
-            </table>
+    <tbody>
+        @foreach (var x in Model.establishments) 
+        {
+        <tr>
+            <td>@x.town</td>
+            <td>@Html.ActionLink(
+                    linkText: @x.name,
+                    actionName: "Read",
+                    controllerName: "Establishment",
+                    routeValues: new
+                    {
+                        id = @x.id
+                    },
+                    htmlAttributes: new
+                    {
+                        target = "_blank"
+                    }
+                )        
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

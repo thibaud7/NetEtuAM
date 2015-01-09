@@ -39,12 +39,23 @@ namespace AuvrayMonmertNetEdu.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(Guid? levelId, Guid? tutorId, Guid? classroomId)
         {
             using (var x = new Entities())
             {
-            PupilModel ss = new PupilModel();
-            
+                PupilModel pm = new PupilModel();
+                if (levelId.HasValue)
+                {
+                    pm.levelId = (Guid) levelId;
+                }
+                if (tutorId.HasValue)
+                {
+                    pm.tutorId = (Guid) tutorId;
+                }
+                if (classroomId.HasValue)
+                {
+                    pm.classroomId = (Guid) classroomId;
+                }
                 
                 ClassroomRepository prepo = new ClassroomRepository(x);
                 List<ClassroomModel> lp = prepo.All().Select(s => new ClassroomModel
@@ -71,7 +82,7 @@ namespace AuvrayMonmertNetEdu.Controllers
                 ViewData["tutors"] = l;
 
 
-                return View(ss);
+                return View(pm);
             }
         }
 

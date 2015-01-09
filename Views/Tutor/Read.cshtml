@@ -46,6 +46,21 @@
             <td>Classe</td>
             <td>Niveau</td>
             <td>Editer</td>
+            <td>
+                @Html.ActionLink(
+                    linkText: "Créer un nouvel élève",
+                    actionName: "Create",
+                    controllerName: "Pupil",
+                    routeValues: new
+                    {
+                        tutorId = Model.id
+                    },
+                    htmlAttributes: new
+                    {
+                        target = "_blank",
+                    }
+                )
+            </td>
         </tr>
     </thead>
     <tbody>
