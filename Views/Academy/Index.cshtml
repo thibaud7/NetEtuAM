@@ -27,10 +27,13 @@
 <div id="academies">
     <table>
     <thead>
+        @if (Model.Count != 0)
+        {
         <tr>
-            <td>Nom </td>
+            <td>@Html.LabelFor(s => s[0].name) </td>
             <td>Operation</td>
         </tr>
+        }
     </thead>
     <tbody>
          @foreach (var academy in Model)
