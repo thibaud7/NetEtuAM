@@ -35,19 +35,8 @@
 @Html.LabelFor(s => s.comment)
 @Model.comment
 
-
-<table>
-    <thead>
-        <tr>
-            <td>Prénom Nom </td>
-            <td>Sexe </td>
-            <td>Anniversaire</td>
-            <td>Etat</td>
-            <td>Classe</td>
-            <td>Niveau</td>
-            <td>Editer</td>
-            <td>
-                @Html.ActionLink(
+<br /><br />
+@Html.ActionLink(
                     linkText: "Créer un nouvel élève",
                     actionName: "Create",
                     controllerName: "Pupil",
@@ -60,7 +49,17 @@
                         target = "_blank",
                     }
                 )
-            </td>
+<table>
+    <thead>
+        <tr>
+            <td>Prénom Nom </td>
+            <td>Sexe </td>
+            <td>Anniversaire</td>
+            <td>Etat</td>
+            <td>Classe</td>
+            <td>Niveau</td>
+            <td>Editer</td>
+           
         </tr>
     </thead>
     <tbody>

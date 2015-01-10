@@ -55,12 +55,12 @@ namespace AuvrayMonmertNetEdu.Controllers
                     Tutor p = createTutorToTutorModel(s);
                     repo.Add(p);
                     repo.Save();
-                    return View("~/Views/Tutor/Read.cshtml", s);
+                    return RedirectToAction("Read", new { id = s.id });
                 }
             }
             else
             {
-                return View(s);
+                return RedirectToAction("Create");
             }
         }
 

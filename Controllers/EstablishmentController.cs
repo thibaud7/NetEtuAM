@@ -79,12 +79,12 @@ namespace AuvrayMonmertNetEdu.Controllers
                     Establishment p = createEstablishmentToEstablishmentModel(s);
                     repo.Add(p);
                     repo.Save();
-                    return View("~/Views/Establishment/Read.cshtml", s);
+                    return RedirectToAction("Read", new { id = s.id });
                 }
             }
             else
             {
-                return View(s);
+                return RedirectToAction("Create");
             }
         }
 
@@ -208,7 +208,7 @@ namespace AuvrayMonmertNetEdu.Controllers
         {
             using (var x = new Entities())
             {
-                String[] mots = recherche.Split(new Char[] { ' ' });
+                String[] mots = recherche.Split(new Char[] { ',' });
                 EstablishmentRepository repo = new EstablishmentRepository(x);
                 List<EstablishmentModel> establishments = repo.Search(mots).Select(e => new EstablishmentModel
                 {

@@ -16,8 +16,26 @@
     <tbody>
          @foreach (var level in Model) {
         <tr>
-            <td>@level.title</td>
-            <td>@level.nomCycle</td>
+            <td>@Html.ActionLink(
+                    linkText:  @level.title,
+                    actionName: "Read",
+                    controllerName: "Level",
+                    routeValues: new
+                    {
+                        id = @level.id   
+                    },
+                    htmlAttributes : null
+                )</td>
+            <td>@Html.ActionLink(
+                    linkText:  @level.nomCycle,
+                    actionName: "Read",
+                    controllerName: "Cycle",
+                    routeValues: new
+                    {
+                        id = @level.idCycle   
+                    },
+                    htmlAttributes : null
+                )</td>
         </tr>
          }
     </tbody>

@@ -130,7 +130,7 @@ namespace AuvrayMonmertNetEdu.Controllers
                     Evaluation p = createEvaluationToEvaluationModel(s);
                     repo.Add(p);
                     repo.Save();
-                    return View("~/Views/Evaluation/Read.cshtml", s);
+                    return RedirectToAction("Read", new { id = s.id });
                 }
             }
             else
@@ -313,7 +313,7 @@ namespace AuvrayMonmertNetEdu.Controllers
                     userName = e.User.LastName
                 }).First();
 
-                return View("~/Views/Evaluation/Read.cshtml", m);
+                return RedirectToAction("Read", new { id=m.id});
             }
         }
 

@@ -24,7 +24,10 @@ namespace AuvrayMonmertNetEdu.Controllers
                     title = s.Title,
                     year = s.Year.Year1,
                     establishmentName = s.Establishment.Name,
-                    userName = s.User.UserName
+                    userName = s.User.UserName,
+                    userId = s.User_Id,
+                    establishmentId = s.Establishment_Id,
+                    yearId = s.Year_Id
                 }).ToList();
                 return View(list);
             }
@@ -79,12 +82,12 @@ namespace AuvrayMonmertNetEdu.Controllers
                     Classroom p = createClassroomToClassroomModel(s);
                     repo.Add(p);
                     repo.Save();
-                    return View("~/Views/Classroom/Read.cshtml", s);
+                    return RedirectToAction("Read", new { id = s.id });
                 }
             }
             else
             {
-                return View(s);
+                return RedirectToAction("Create");
             }
         }
 
@@ -225,7 +228,7 @@ namespace AuvrayMonmertNetEdu.Controllers
         {
             using (var x = new Entities())
             {
-                String[] mots = recherche.Split(new Char[] { ' ' });
+                String[] mots = recherche.Split(new Char[] { ',' });
                 ClassroomRepository repo = new ClassroomRepository(x);
                 List<ClassroomModel> classrooms = repo.Search(mots).Select(c => new ClassroomModel
                 {

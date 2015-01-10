@@ -60,10 +60,21 @@ Le, @Model.date, noté sur : @Model.totalPoint
 Les résultats :
 <table>
     <thead>
-        <tr>Nom - Note</tr>
+        <tr><td>Nom - Note</td></tr>
     </thead>
     <tbody>
         
+        @Html.ActionLink(
+                linkText: "Ajouter des résultats",
+                actionName: "AddResults",
+                controllerName: "Evaluation",
+                routeValues: new
+                {
+                id = @Model.id
+                },
+                htmlAttributes: null
+                )
+
 @foreach (var res in Model.resultats)
 {
     <tr><td>

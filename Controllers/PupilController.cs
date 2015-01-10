@@ -109,12 +109,12 @@ namespace AuvrayMonmertNetEdu.Controllers
                     Pupil p = createPupilToPupilModel(s);
                     repo.Add(p);
                     repo.Save();
-                    return View("~/Views/Pupil/Read.cshtml", s);
+                    return RedirectToAction("Read", new { id = s.id });
                 }
             }
             else
             {
-                return View(s);
+                return RedirectToAction("Create");
             }
         }
 

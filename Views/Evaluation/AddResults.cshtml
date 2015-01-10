@@ -8,11 +8,11 @@ var pupils = (List<PupilModel>)ViewData["pupils"];
 <table class="table">
 <thead>
 <tr>
-<th>Period</th>
-<th>Classroom</th>
-<th>User</th>
-<th>Date</th>
-<th>TotalPoint</th>
+<td>Period</td>
+<td>Classroom</td>
+<td>User</td>
+<td>Date</td>
+<td>TotalPoint</td>
 </tr>
 </thead>
 <tbody>
@@ -56,12 +56,15 @@ target = "_blank",
 </tr>
 </tbody>
 </table>
+<br /> <br />
+
+
 @{Html.BeginForm("AddResults", "Evaluation", FormMethod.Post);}
 <table>
 <thead>
 <tr >
-<th>Pupil</th>
-<th>Result</th>
+<td>Pupil</td>
+<td>Result</td>
 </tr>
 </thead>
 <tbody>

@@ -6,15 +6,6 @@
 
 <h2>Académie de @Model.name</h2>
 
-
-<table>
-    <thead>
-        @if (Model.establishments.Count != 0)
-        {
-        <tr>
-            <td>@Html.LabelFor(s => s.establishments[0].town)</td>
-            <td>@Html.LabelFor(s => s.establishments[0].name)</td>
-            <td>
                 @Html.ActionLink(
                     linkText: "Créer un nouvel établissement",
                     actionName: "Create",
@@ -28,7 +19,16 @@
                         target = "_blank",
                     }
                 )
-            </td>
+
+
+<table>
+    <thead>
+        @if (Model.establishments.Count != 0)
+        {
+        <tr>
+            <td>@Html.LabelFor(s => s.establishments[0].town)</td>
+            <td>@Html.LabelFor(s => s.establishments[0].name)</td>
+            
         </tr>
         }
     </thead>

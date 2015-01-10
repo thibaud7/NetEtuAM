@@ -6,13 +6,7 @@
 
 <h2>Différents niveaux scolaires associés à leurs cycles</h2>
 <h3>@Model.title</h3>
-<table>
-    <thead>
-        <tr>
-            <td>Titre </td>
-            <td>Cycle </td>
-            <td>
-                 @Html.ActionLink(
+@Html.ActionLink(
                     linkText: "Créer un nouvel élève",
                     actionName: "Create",
                     controllerName: "Pupil",
@@ -25,7 +19,14 @@
                         target = "_blank",
                     }
                 )
-            </td>
+<table>
+    <thead>
+        <tr>
+            <td>Nom </td>
+            <td>Sexe </td>
+            <td>Date de naissance</td>
+            <td>Classe</td>
+            <td>Opération</td>
         </tr>
     </thead>
     <tbody>
@@ -52,21 +53,8 @@
             }
             
             <td>@pupil.birthdayDate.ToShortDateString()</td>
-            <td>@pupil.state</td>
-            <td>@Html.ActionLink(
-                    linkText: @pupil.classroomTitle,
-                    actionName: "Read",
-                    controllerName: "Classroom",
-                    routeValues: new
-                    {
-                        id = @pupil.classroomId  
-                    },
-                    htmlAttributes: new
-                    {
-                        target="_blank"
-                    }
-                )
-                </td>
+            
+            
             <td>@pupil.levelTitle</td>
             <td> @Html.ActionLink(
                     linkText: "Editer",

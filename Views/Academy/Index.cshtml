@@ -5,7 +5,13 @@
 }
 
 <h2>Ensemble des académies</h2>
-
+@Html.ActionLink(
+                    linkText:  "Créer une académie",
+                    actionName: "Create",
+                    controllerName: "Academy",
+                    routeValues: null,
+                    htmlAttributes : null
+                )
 
 <div>
     @using (Ajax.BeginForm("Search", "Academy",

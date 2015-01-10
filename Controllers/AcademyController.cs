@@ -110,12 +110,12 @@ namespace AuvrayMonmertNetEdu.Controllers
                     Academy a = createAcademyToAcademyModel(am);
                     repo.Add(a);
                     repo.Save();
-                    return View("~/Views/Academy/Read.cshtml", am);
+                    return RedirectToAction("Read", new { id = am.id });
                 }
             }
             else
             {
-                return View(am);
+                return RedirectToAction("Create");
             }
         }
 

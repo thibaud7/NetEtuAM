@@ -6,9 +6,9 @@
 
 <h2>Classe</h2>
 
-<p>@Html.LabelFor(s => s.title) : @Model.title</p>
-<p>@Html.LabelFor(s => s.establishmentName) : @Model.establishmentName</p>
-<p>@Html.LabelFor(s => s.userName)  : @Model.userName</p>
+<p>@Html.LabelFor(s => s.title)  @Model.title</p>
+<p>@Html.LabelFor(s => s.establishmentName)  @Model.establishmentName</p>
+<p>@Html.LabelFor(s => s.userName)   @Model.userName</p>
 
     Liste des evaluations
 <table>
@@ -93,21 +93,7 @@
 
 <br />
 
-Liste des élèves :
-<br />
-
-<table>
-    <thead>
-        <tr>
-            <td>Prénom Nom </td>
-            <td>Sexe </td>
-            <td>Anniversaire</td>
-            <td>Etat</td>
-            <td>Tuteur</td>
-            <td>Classe</td>
-            <td>Niveau</td>
-            <td>Editer</td>
-            <td>
+Liste des élèves : 
                 @Html.ActionLink(
                     linkText: "Créer un nouvel élève",
                     actionName: "Create",
@@ -121,7 +107,21 @@ Liste des élèves :
                         target = "_blank",
                     }
                 )
-            </td>
+            
+<br />
+
+<table>
+    <thead>
+        <tr>
+            <td>Prénom Nom </td>
+            <td>Sexe </td>
+            <td>Anniversaire</td>
+            <td>Etat</td>
+            <td>Tuteur</td>
+            <td>Classe</td>
+            <td>Niveau</td>
+            <td>Editer</td>
+            
         </tr>
     </thead>
     <tbody>
@@ -130,25 +130,19 @@ Liste des élèves :
         <tr>
             <td> @Html.ActionLink(
                     linkText:  @pupil.firstName +" "+ @pupil.lastName,
->>>>>>> 224aca6159147fee33af05734a4a4cb2c921e5c3
                     actionName: "Read",
                     controllerName: "Pupil",
                     routeValues: new
                     {
                         id = @pupil.id   
                     },
-<<<<<<< HEAD
                     htmlAttributes : new {
                         target="_blank"
                     }
-                );
-            </td>
-        }
-        </tr>
-=======
-                    htmlAttributes : null
                 )
             </td>
+                 
+            
             @if (pupil.sex == 1)
             {
                 <td>M</td>
@@ -201,6 +195,5 @@ Liste des élèves :
             </td>
         </tr>
          }
->>>>>>> 224aca6159147fee33af05734a4a4cb2c921e5c3
     </tbody>
 </table>

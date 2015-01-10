@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ensemble des utilisateurs</h2>
 
 <table>
     <thead>
         <tr>
-            <td>Id </td>
+            <td>Opération</td>
             <td>Prénom </td>
             <td>Nom </td>
             <td>UserName</td>
@@ -19,7 +19,16 @@
     <tbody>
          @foreach (var user in Model) {
         <tr>
-            <td>@user.id</td>
+            <td>@Html.ActionLink(
+                    linkText:  "Voir",
+                    actionName: "Read",
+                    controllerName: "User",
+                    routeValues: new
+                    {
+                        id = @user.id   
+                    },
+                    htmlAttributes : null
+                )</td>
             <td>@user.firstName</td>
             <td>@user.lastName</td>
             <td>@user.userName</td>
